@@ -1,0 +1,307 @@
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  height: 85vh;
+  min-height: 700px;
+  overflow: hidden;
+}
+
+/* Slide wrapper */
+.slide-wrapper {
+  position: relative;
+  height: 85vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+}
+
+/* Background and overlay */
+.slide-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(83, 99, 173, 0.8) 0%,
+    rgba(104, 69, 139, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+/* Content */
+.slide-content-container {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.slide-content {
+  color: white;
+  text-align: left;
+}
+
+.slide-text {
+  max-width: 600px;
+}
+
+.slide-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  animation: slideInLeft 1s ease-out;
+}
+
+.slide-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  animation: slideInLeft 1s ease-out 0.2s both;
+}
+
+.slide-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+  animation: slideInLeft 1s ease-out 0.4s both;
+}
+
+
+
+.slide-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 12px 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.slide-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.slide-btn-secondary {
+  border: 2px solid white;
+  padding: 10px 28px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.slide-btn-secondary:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+/* Custom indicators */
+.custom-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 3;
+}
+
+.custom-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-indicator.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+.custom-indicator:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Carousel controls customization */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.carousel-control-prev {
+  left: 30px;
+}
+
+.carousel-control-next {
+  right: 30px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Hide default indicators */
+.carousel-indicators {
+  display: none;
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .slideshow-container {
+    height: 80vh;
+    min-height: 600px;
+  }
+  
+  .slide-wrapper {
+    height: 80vh;
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 75vh;
+    min-height: 550px;
+  }
+  
+  .slide-wrapper {
+    height: 75vh;
+    min-height: 550px;
+  }
+  
+  .slide-content {
+    text-align: center;
+    padding: 0 15px;
+  }
+  
+  .slide-title {
+    font-size: 2.5rem;
+  }
+  
+  .slide-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .slide-description {
+    font-size: 1rem;
+  }
+  
+  
+  
+  .slide-btn-primary,
+  .slide-btn-secondary {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .carousel-control-prev {
+    left: 15px;
+  }
+  
+  .carousel-control-next {
+    right: 15px;
+  }
+  
+  .custom-indicators {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .slideshow-container {
+    height: 30vh;
+    min-height: 250px;
+  }
+  
+  .slide-wrapper {
+    height: 30vh;
+    min-height: 250px;
+  }
+  
+  .slide-title {
+    font-size: 1.5rem;
+  }
+  
+  .slide-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .slide-description {
+    font-size: 0.8rem;
+  }
+}

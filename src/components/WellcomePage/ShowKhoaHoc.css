@@ -1,0 +1,452 @@
+.courses-section {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+}
+
+/* Section Title */
+.courses-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(45deg, #00bcd4, #4caf50);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Course Card */
+.course-card {
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Gradient Borders for Images */
+.course-image-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    padding: 8px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.gradient-border-1 {
+    background: linear-gradient(45deg, #ffd700, #00bcd4);
+}
+
+.gradient-border-2 {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #a8e6cf);
+}
+
+.gradient-border-3 {
+    background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef);
+}
+
+.gradient-border-4 {
+    background: linear-gradient(45deg, #a8edea, #fed6e3);
+}
+
+.course-image-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Course Content */
+.course-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.4;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    min-height: 80px;
+    margin-bottom: 20px;
+}
+
+/* Course Price */
+.course-price {
+    font-size: 0.9rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.price-text {
+    color: #666;
+}
+
+.price-amount {
+    color: #e74c3c;
+    font-weight: 700;
+}
+
+/* CTA Button */
+.course-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(238, 90, 82, 0.3);
+}
+
+.course-btn:hover {
+    background: linear-gradient(45deg, #ee5a52, #e74c3c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(238, 90, 82, 0.4);
+}
+
+.course-btn:focus {
+    box-shadow: 0 6px 20px rgba(238, 90, 82, 0.4);
+}
+
+/* Pagination Dots */
+.pagination-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.pagination-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-dot.active {
+    background: linear-gradient(45deg, #00bcd4, #4caf50);
+    transform: scale(1.2);
+}
+
+.pagination-dot:hover {
+    background-color: #00bcd4;
+    transform: scale(1.1);
+}
+
+.course-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    min-height: 80px;
+    max-height: 80px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Giới hạn 3 dòng */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+/* Courses Carousel */
+.courses-carousel {
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.courses-carousel-inner {
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.courses-carousel .carousel-inner {
+    border-radius: 15px;
+}
+
+.courses-carousel .carousel-item {
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Custom Carousel Controls */
+.custom-carousel-prev,
+.custom-carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.custom-carousel-prev:hover,
+.custom-carousel-next:hover {
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.custom-carousel-prev:disabled,
+.custom-carousel-next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: translateY(-50%);
+}
+
+.custom-carousel-prev {
+    left: -25px;
+}
+
+.custom-carousel-next {
+    right: -25px;
+}
+
+/* Course Card Drag States */
+.course-card {
+    padding: 20px;
+    transition: transform 0.3s ease;
+    cursor: grab;
+    user-select: none;
+}
+
+.course-card:active {
+    cursor: grabbing;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+}
+
+.course-card img {
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Carousel Pagination */
+.carousel-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.carousel-pagination .pagination-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-pagination .pagination-dot.active {
+    background: linear-gradient(45deg, #00bcd4, #4caf50);
+    transform: scale(1.3);
+}
+
+.carousel-pagination .pagination-dot:hover {
+    background-color: #00bcd4;
+    transform: scale(1.1);
+}
+
+/* Touch/Swipe Indicators */
+.courses-carousel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(0,188,212,0.1) 0%, 
+        transparent 10%, 
+        transparent 90%, 
+        rgba(0,188,212,0.1) 100%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.courses-carousel:hover::before {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .course-image-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .courses-title {
+        font-size: 2rem;
+    }
+
+     .custom-carousel-prev,
+    .custom-carousel-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .custom-carousel-prev {
+        left: -20px;
+    }
+    
+    .custom-carousel-next {
+        right: -20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+     .course-description {
+        min-height: 60px;
+        max-height: 60px;
+        font-size: 0.9rem;
+        -webkit-line-clamp: 2; /* Giới hạn 2 dòng trên mobile */
+    }
+
+    .courses-section {
+        padding: 60px 0;
+    }
+    
+    .course-image-wrapper {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .courses-title {
+        font-size: 1.8rem;
+    }
+    
+    .course-title {
+        font-size: 1.1rem;
+        min-height: 50px;
+    }
+    
+    .course-description {
+        min-height: 60px;
+        font-size: 0.9rem;
+    }
+    .custom-carousel-prev,
+    .custom-carousel-next {
+        display: none; /* Hide arrows on mobile, use swipe */
+    }
+    
+    .courses-carousel {
+        margin: 0 -15px;
+        padding: 0 15px;
+    }
+    
+    .course-card {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .course-image-wrapper {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .course-card {
+        padding: 15px;
+    }
+
+     .courses-carousel::before {
+        display: none;
+    }
+    
+    .carousel-pagination {
+        margin-top: 30px;
+    }
+    
+    .carousel-pagination .pagination-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Loading and Error States */
+.text-center .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.alert {
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+/* Animation for smooth transitions */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.course-card {
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Prevent text selection during drag */
+.courses-carousel * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
