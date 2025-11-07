@@ -1,6 +1,6 @@
 class APIRoute {
-    //static baseUrl=`http://localhost:5225`;
-     static baseUrl=`https://2gcqx76s-5225.asse.devtunnels.ms`;
+    static baseUrl=`http://localhost:5225`;
+     //static baseUrl=`https://2gcqx76s-5225.asse.devtunnels.ms`;
     static getUrlImage(url){
         return `${this.baseUrl}${url}`;
     }

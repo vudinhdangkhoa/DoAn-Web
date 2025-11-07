@@ -148,6 +148,7 @@ function ChiTietKhoaHoc() {
 
         try {
             // Gọi API chung để tạo thanh toán
+            console.log("Đang tạo thanh toán với dữ liệu:", registrationData);
             const response = await axios.post(
                 APIRoute.getURL('Payment/CreatePayment'), // <-- API Endpoint mới, chung chung hơn
                 registrationData
@@ -288,7 +289,11 @@ function ChiTietKhoaHoc() {
                                     {lopHocList.length > 0 ? lopHocList.map(lop => (
                                         <tr key={lop.id}>
                                             <td className="fw-bold">{lop.tenLop}</td>
-                                            <td>{lop.giaoVien}</td>
+                                            <td>
+                                                {(lop.giaoVien?.map(gv => gv.tenGV || gv.tenGv || gv.TenGv || gv.TenGV || '')
+                                                    .filter(Boolean)
+                                                    .join(', ')) || 'Chưa có giáo viên'}
+                                            </td>
                                             <td>{formatSchedule(lop.soBuoiTrenTuan)}</td>
                                             <td>{`${formatTime(lop.thoiGianBatDau)} - ${formatTime(lop.thoiGianKetThuc)}`}</td>
                                             <td>

@@ -100,7 +100,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                     >
                                         {user.avatar ? (
                                             <img
-                                                src={user.avatar}
+                                                src={user.avatar.startsWith('http://') || user.avatar.startsWith('https://') ? user.avatar : APIRoute.getUrlImage(user.avatar)}
                                                 alt={user.tenHv}
                                                 className="rounded-circle me-2"
                                                 style={{ width: '24px', height: '24px', objectFit: 'cover' }}
@@ -261,7 +261,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                         <div className="d-flex align-items-center mb-3 p-2 bg-light rounded">
                                             {user.avatar ? (
                                                 <img
-                                                    src={user.avatar}
+                                                    src={(user.avatar.startsWith('http://') || user.avatar.startsWith('https://')) ? user.avatar : APIRoute.getUrlImage(user.avatar)}
                                                     alt={user.tenPh}
                                                     className="rounded-circle me-3"
                                                     style={{ width: '40px', height: '40px', objectFit: 'cover' }}

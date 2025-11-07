@@ -65,6 +65,7 @@ function ThongTinCaNhan() {
                     tenPh: response.data.tenPh,
                     ngaySinh: response.data.ngaySinh ? new Date(response.data.ngaySinh).toISOString().split('T')[0] : '',
                     sdt: response.data.sdt,
+                    GioiTinh: response.data.gioiTinh
                 });
                 setAvatarPreview(response.data.avatar); // Set avatar ban đầu
             }
@@ -115,14 +116,21 @@ function ThongTinCaNhan() {
         setUpdateError(null);
         setUpdateSuccess('');
 
+        if(!formData.GioiTinh){
+            setUpdateError("Vui lòng chọn giới tính.");
+            setIsLoadingUpdate(false);
+            return;
+        }
+
         const updateData = new FormData();
         updateData.append('TenPh', formData.tenPh);
         updateData.append('NgaySinh', formData.ngaySinh);
         updateData.append('Sdt', formData.sdt);
+        updateData.append('GioiTinh', formData.GioiTinh);
         if (avatarFile) {
             updateData.append('avatar', avatarFile);
         }
-
+        console.log("gioi tinh gui len:", formData.GioiTinh);
         try {
             const phuHuynhId = localStorage.getItem('UserId');
             const response = await axios.put(
@@ -221,7 +229,7 @@ function ThongTinCaNhan() {
                 addStudentFormData.append(`LsthocVien[${index}].Avatar`, student.AvatarFile);
             }
         });
-
+        
         try {
             const phuHuynhId = localStorage.getItem('UserId');
             const response = await axios.post(
@@ -355,6 +363,16 @@ function ThongTinCaNhan() {
                                                         <Form.Group className="mb-3" controlId="formSdt">
                                                             <Form.Label>Số Điện Thoại</Form.Label>
                                                             <Form.Control type="text" name="sdt" value={formData.sdt || ''} onChange={handleInputChange} readOnly={!isEditing} />
+                                                        </Form.Group>
+                                                    </Col>
+                                                    <Col md={6}>
+                                                        <Form.Group className="mb-3" controlId="formGioiTinh">
+                                                            <Form.Label>Giới Tính</Form.Label>
+                                                            <Form.Select name="GioiTinh" value={formData.GioiTinh || ''} onChange={handleInputChange} disabled={!isEditing}>
+                                                                <option value="">Chọn giới tính</option>
+                                                                <option value="Nam">Nam</option>
+                                                                <option value="Nữ">Nữ</option>
+                                                            </Form.Select>
                                                         </Form.Group>
                                                     </Col>
                                                 </Row>
