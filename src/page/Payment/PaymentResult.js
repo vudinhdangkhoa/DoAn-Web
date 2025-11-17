@@ -32,12 +32,13 @@ function PaymentResult() {
                     setPaymentStatus(response.data.status);
                     setInvoiceDetails(response.data.invoiceDetails);
                     console.log(response.data);
+                    setIsLoading(false);
                 }
             } catch (err) {
                 console.error("Lỗi khi xác thực thanh toán:", err);
                 setError(err.response?.data?.message || 'Lỗi khi xác thực thanh toán.');
                 setPaymentStatus('fail');
-                
+                setIsLoading(false);
 
 
             } finally {

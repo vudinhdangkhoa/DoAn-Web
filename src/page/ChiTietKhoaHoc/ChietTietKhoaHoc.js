@@ -47,6 +47,7 @@ function ChiTietKhoaHoc() {
                 const response = await axios.get(APIRoute.getURL(`TrangChu/GetDetailKhoaHoc/${idKhoaHoc}`));
                 if (response.status === 200) {
                     setCourseDetail(response.data);
+                    console.log("Chi tiết khóa học:", response.data);
                 }
             } catch (err) {
                 setError("Không thể tải thông tin khóa học.");
@@ -139,9 +140,9 @@ function ChiTietKhoaHoc() {
 
         const registrationData = {
             IdLopHoc: selectedLopHoc.id,
-            HocVienId: isRegisteringForChild ? parseInt(selectedHocVien, 10) : parseInt(localStorage.getItem('UserId'), 10),
+            HocVienId: isRegisteringForChild ? parseInt(selectedHocVien, 10) : 0,
             PhuHuynhId: parseInt(localStorage.getItem('UserId'), 10),
-            Amount: courseDetail?.hocPhi,
+            Amount: courseDetail?.hocPhi - (courseDetail?.giamGia * courseDetail?.hocPhi) || 0,
             PaymentMethod: paymentMethod, // <-- Gửi phương thức đã chọn
             KhoaHocId: idKhoaHoc
         };
@@ -243,7 +244,27 @@ function ChiTietKhoaHoc() {
                                 </ul>
 
                                 <div className="course-price-main">
-                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(courseDetail.hocPhi)}
+                                    {(() => {
+                                        const original = Number(courseDetail.hocPhi) || 0;
+                                        let giamGia = Number(courseDetail.giamGia) || 0; // nếu là 0.1 thì ok
+                                        // Nếu giamGia được lưu là 10 (tức %), chuyển về fraction
+                                        if (giamGia > 1) giamGia = giamGia / 100;
+                                        const percent = Math.round(giamGia * 100);
+                                        const discounted = giamGia > 0 ? Math.round(original * (1 - giamGia)) : original;
+                                        const fmt = (v) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(v);
+
+                                        return giamGia > 0 ? (
+                                            <>
+                                                <div><del className="text-muted">{fmt(original)}</del></div>
+                                                <div className="mt-1">
+                                                    <span className="fw-bold text-danger">{fmt(discounted)}</span>
+                                                    <small className="text-success ms-2">-{percent}%</small>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            fmt(original)
+                                        );
+                                    })()}
                                 </div>
 
 
@@ -340,7 +361,11 @@ function ChiTietKhoaHoc() {
                             <h5>Thông Tin Lớp Học</h5>
                             <p><strong>Lớp:</strong> {selectedLopHoc.tenLop}</p>
                             <p><strong>Khóa học:</strong> {courseDetail?.tenKhoaHoc}</p>
-                            <p><strong>Học phí:</strong> <span className="text-danger fw-bold">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(courseDetail?.hocPhi)}</span></p>
+                            <p><strong>Học phí:</strong> 
+                                <span className="text-danger fw-bold">
+                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(courseDetail?.hocPhi - (courseDetail?.giamGia * courseDetail?.hocPhi) || 0)}
+                                </span>
+                            </p>
                         </div>
                     )}
 

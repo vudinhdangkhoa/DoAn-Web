@@ -137,7 +137,7 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
                         <Carousel
                             activeIndex={activeIndex}
                             onSelect={setActiveIndex}
-                            controls={true}
+                            controls={false}
                             indicators={false}
                             interval={null}
                             touch={true}
@@ -223,18 +223,7 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
                             </>
                         )}
 
-                        {/* Pagination Dots */}
-                        {slides.length > 1 && (
-                            <div className="carousel-pagination">
-                                {slides.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        className={`pagination-dot ${activeIndex === index ? 'active' : ''}`}
-                                        onClick={() => setActiveIndex(index)}
-                                    />
-                                ))}
-                            </div>
-                        )}
+                        
                     </div>
                 ) : (
                     <Row>

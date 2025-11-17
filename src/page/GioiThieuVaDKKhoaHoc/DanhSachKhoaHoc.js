@@ -121,7 +121,27 @@ function DanhSachKhoaHoc() {
                                                         <i className="fas fa-clock me-2"></i>{course.thoiGianHoc} buổi
                                                     </span>
                                                     <span className="course-fee">
-                                                        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(course.hocPhi)}
+                                                        {(() => {
+                                                            const original = Number(course.hocPhi) || 0;
+                                                            let giamGia = Number(course.giamGia) || 0; // nếu là 0.1 thì ok
+                                                            // Nếu giamGia được lưu là 10 (tức %), chuyển về fraction
+                                                            if (giamGia > 1) giamGia = giamGia / 100;
+                                                            const percent = Math.round(giamGia * 100);
+                                                            const discounted = giamGia > 0 ? Math.round(original * (1 - giamGia)) : original;
+                                                            const fmt = (v) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(v);
+
+                                                            return giamGia > 0 ? (
+                                                                <>
+                                                                    <div><del className="text-muted">{fmt(original)}</del></div>
+                                                                    <div className="mt-1">
+                                                                        <span className="fw-bold text-danger">{fmt(discounted)}</span>
+                                                                        <small className="text-success ms-2">-{percent}%</small>
+                                                                    </div>
+                                                                </>
+                                                            ) : (
+                                                                fmt(original)
+                                                            );
+                                                        })()}
                                                     </span>
                                                 </div>
                                             </Card.Body>
