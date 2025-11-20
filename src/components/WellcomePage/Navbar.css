@@ -1,89 +1,103 @@
 /* Top contact bar */
 .top-contact-bar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-size: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 14px;
 }
 
 .contact-info i {
-  margin-right: 5px;
-  color: #ffd700;
+    margin-right: 5px;
+    color: #ffd700;
 }
 
 .social-links a {
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-  color: #ffd700 !important;
+    color: #ffd700 !important;
 }
 
 /* Main navbar */
 .main-navbar {
-  padding: 10px 0;
-  border-bottom: 3px solid #667eea;
+    padding: 10px 0;
+    border-bottom: 3px solid #667eea;
 }
 
 .brand-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.02);
 }
 
 .brand-text {
-  color: #333;
-  font-family: 'Arial', sans-serif;
+    line-height: 1.2;
 }
 
-.brand-text strong {
-  font-size: 20px;
-  color: #667eea;
+.brand-title {
+    font-size: 1.8rem;
+    /* Tăng kích thước chữ chính */
+    color: #d32f2f;
+    /* Sử dụng màu đỏ thương hiệu hoặc màu đậm hơn */
+    font-weight: 800;
+    /* Tăng độ đậm */
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.brand-text small {
-  font-size: 10px;
-  line-height: 1;
+.brand-subtitle {
+    font-size: 0.85rem;
+    /* Tăng kích thước chữ phụ */
+    font-weight: 600;
+    letter-spacing: 2px;
+    /* Giãn chữ để trông sang trọng hơn */
+    color: #666;
 }
 
 /* Navigation items */
 .nav-item-custom {
-  color: #333 !important;
-  font-weight: 600;
-  font-size: 14px;
-  margin: 0 10px;
-  padding: 8px 15px !important;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    color: #333 !important;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 10px;
+    padding: 8px 15px !important;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .nav-item-custom:hover {
-  color: white !important;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transform: translateY(-2px);
+    color: white !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: translateY(-2px);
 }
 
 /* Responsive */
 @media (max-width: 991px) {
-  .top-contact-bar {
-    display: none;
-  }
-  
-  .nav-item-custom {
-    margin: 5px 0;
-    text-align: center;
-  }
-  
-  .brand-text strong {
-    font-size: 16px;
-  }
-  
-  .brand-text small {
-    font-size: 9px;
-  }
+    .top-contact-bar {
+        display: none;
+    }
+
+    .nav-item-custom {
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .brand-text strong {
+        font-size: 16px;
+    }
+
+    .brand-text small {
+        font-size: 9px;
+    }
 }
 
 /* Responsive Auth Buttons */
@@ -135,7 +149,7 @@
         display: block;
         margin-bottom: 0.25rem;
     }
-    
+
     .top-contact-bar .contact-info span:last-child {
         margin-bottom: 0;
     }
@@ -145,11 +159,11 @@
     .top-contact-bar {
         padding: 0.5rem 0;
     }
-    
+
     .top-contact-bar .contact-info {
         font-size: 0.75rem;
     }
-    
+
     .top-contact-bar .contact-info span {
         margin-right: 0;
         margin-bottom: 0.25rem;
@@ -201,15 +215,16 @@
 
 @media (max-width: 768px) {
     .brand-logo img {
-        height: 35px;
+        height: 50px;
+        /* Giảm nhẹ trên mobile nhưng vẫn to hơn cũ */
     }
-    
-    .brand-text strong {
-        font-size: 1rem;
+
+    .brand-title {
+        font-size: 1.3rem;
     }
-    
-    .brand-text small {
-        font-size: 0.65rem;
+
+    .brand-subtitle {
+        font-size: 0.7rem;
     }
 }
 
@@ -236,7 +251,7 @@
         margin: 0.25rem 0;
         border-bottom: 1px solid #e9ecef;
     }
-    
+
     .nav-item-custom:last-of-type {
         border-bottom: none;
     }
@@ -255,7 +270,7 @@
         border: none;
         padding: 0.25rem 0.5rem;
     }
-    
+
     .navbar-toggler:focus {
         box-shadow: none;
     }

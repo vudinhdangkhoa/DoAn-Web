@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Button, Card,Carousel,Image,Spinner,Alert } from "react-bootstrap";
+import { Container, Row, Col, Button, Card, Carousel, Image, Spinner, Alert } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './GioiThieu.css';
 import APIRoute from "../../APIRoute";
@@ -25,22 +25,22 @@ function GioiThieu({ giaoVien = [], loading, error }) {
     const contentData = {
         MY_THUAT_PPA: {
             dropCap: 'M',
-            title: 'MỸ THUẬT KSL',
+            title: 'MỸ THUẬT PPA',
             content: [
                 'Mỹ thuật không đơn giản chỉ là vẽ vời hay chỉ là một môn học năng khiếu mà nó bao hàm ý nghĩa về sự miêu tả cái đẹp, cảm nhận và gợi mở trí tưởng tượng để thể hiện bản thân. Mỹ thuật giúp con người phát triển nhận thức thẩm mỹ, biết cảm nhận và rung động trước cái đẹp.',
-                'Nhờ mỹ thuật con người trở nên tự tin hơn, bộc lộ cá tính bản thân, phát triển khả năng tư duy về hình ảnh, trí tưởng tượng và óc sáng tạo. KSL được thành lập với sứ mệnh mang đến cho học viên những trải nghiệm nghệ thuật chất lượng cao nhất.',
-                'Chúng tôi tin rằng mỗi người đều có khả năng sáng tạo tiềm ẩn, cần được khơi dậy và phát triển thông qua những phương pháp giảng dạy khoa học và hiện đại. Môi trường học tập tại KSL luôn tràn đầy năng lượng tích cực.',
-                'Với đội ngũ giảng viên giàu kinh nghiệm và tâm huyết, KSL mong muốn tạo ra môi trường học tập rèn luyện tính sáng tạo và khả năng tư duy đang sẵn có trong mỗi người chúng ta.'
+                'Nhờ mỹ thuật con người trở nên tự tin hơn, bộc lộ cá tính bản thân, phát triển khả năng tư duy về hình ảnh, trí tưởng tượng và óc sáng tạo. PPA được thành lập với sứ mệnh mang đến cho học viên những trải nghiệm nghệ thuật chất lượng cao nhất.',
+                'Chúng tôi tin rằng mỗi người đều có khả năng sáng tạo tiềm ẩn, cần được khơi dậy và phát triển thông qua những phương pháp giảng dạy khoa học và hiện đại. Môi trường học tập tại PPA luôn tràn đầy năng lượng tích cực.',
+                'Với đội ngũ giảng viên giàu kinh nghiệm và tâm huyết, PPA mong muốn tạo ra môi trường học tập rèn luyện tính sáng tạo và khả năng tư duy đang sẵn có trong mỗi người chúng ta.'
             ]
         },
         TRIET_LY_GIANG_DAY: {
             dropCap: 'T',
             title: 'TRIẾT LÝ GIẢNG DẠY',
             content: [
-                'riết lý giảng dạy của KSL tập trung vào việc phát triển toàn diện cá nhân học viên. Chúng tôi tin rằng mỗi học viên đều có tiềm năng sáng tạo riêng biệt cần được khơi gợi và phát triển một cách tự nhiên nhất.',
+                'riết lý giảng dạy của PPA tập trung vào việc phát triển toàn diện cá nhân học viên. Chúng tôi tin rằng mỗi học viên đều có tiềm năng sáng tạo riêng biệt cần được khơi gợi và phát triển một cách tự nhiên nhất.',
                 'Phương pháp giảng dạy của chúng tôi không chỉ dừng lại ở việc truyền đạt kỹ thuật mà còn chú trọng việc xây dựng tư duy nghệ thuật, khả năng quan sát và cảm thụ cái đẹp. Học viên được khuyến khích thể hiện cá tính và phong cách riêng thông qua từng tác phẩm.',
-                'Tại KSL, chúng tôi áp dụng phương pháp giảng dạy cá nhân hóa, chú trọng đến đặc điểm và sở thích của từng học viên. Điều này giúp mỗi người có thể phát huy tối đa tiềm năng sáng tạo của bản thân.',
-                'Môi trường học tập tại KSL được thiết kế để tạo cảm hứng và động lực cho học viên. Chúng tôi luôn cập nhật những xu hướng mới trong nghệ thuật và ứng dụng vào chương trình giảng dạy.'
+                'Tại PPA, chúng tôi áp dụng phương pháp giảng dạy cá nhân hóa, chú trọng đến đặc điểm và sở thích của từng học viên. Điều này giúp mỗi người có thể phát huy tối đa tiềm năng sáng tạo của bản thân.',
+                'Môi trường học tập tại PPA được thiết kế để tạo cảm hứng và động lực cho học viên. Chúng tôi luôn cập nhật những xu hướng mới trong nghệ thuật và ứng dụng vào chương trình giảng dạy.'
             ]
         }
     };
@@ -58,7 +58,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                     <Row className="justify-content-center">
                         <Col xs={12} className="text-center mb-5">
                             <h2 className="ppa-section-title" data-aos="fade-up">
-                                GIỚI THIỆU VỀ KSL
+                                GIỚI THIỆU VỀ PPA
                             </h2>
                         </Col>
                     </Row>
@@ -98,7 +98,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                                 onClick={() => setActiveTab('MY_THUAT_PPA')}
                                                 aria-label="Xem thông tin Mỹ thuật PPA"
                                             >
-                                                MỸ THUẬT KSL
+                                                MỸ THUẬT PPA
                                             </button>
                                         </div>
                                     </Col>
@@ -143,86 +143,76 @@ function GioiThieu({ giaoVien = [], loading, error }) {
 
 
             {/* Learn From Heart Section */}
-            <section className="learn-from-heart-bg">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col xs={12} className="text-center mb-5">
-                            <h2 className="learn-title" data-aos="fade-up">
-                                LEARN FROM THE HEART
+            <section className="learn-from-heart-section">
+                <div className="learn-bg-overlay"></div>
+
+                {/* --- THAY ĐỔI Ở ĐÂY: Đưa đường kẻ ra ngoài Container --- */}
+                {/* Hình ảnh đường nối và chim sẽ nằm ở đây, chiếm toàn màn hình */}
+                <div className="full-width-decoration d-none d-lg-block"></div>
+
+                <Container className="position-relative" style={{ zIndex: 2 }}>
+                    {/* Tiêu đề */}
+                    <Row className="justify-content-center mb-5">
+                        <Col xs={12} className="text-center">
+                            <h2 className="learn-heading">
+                                TÂM DẪN LỐI NGHỆ THUẬT KHAI HOA
                             </h2>
+                            <div className="learn-heading-underline"></div>
                         </Col>
                     </Row>
 
-                    <Row className="justify-content-center text-center position-relative">
-                        {/* Step 1 */}
-                        <Col xs={6} sm={6} md={3} className="mb-4 mb-md-0">
-                            <div className="step-item" data-aos="fade-up" data-aos-delay="100">
-                                <div className="step-circle">
-                                    <img
-                                        src="/khoa-luyen-thi.jpg"
-                                        alt="Giáo viên hướng dẫn tận tâm"
-                                        className="step-image"
-                                    />
+                    {/* Nội dung các bước */}
+                    <div className="learn-steps-container">
+
+                        {/* XÓA đoạn div className="dashed-line-decoration" cũ ở đây đi */}
+
+                        <Row className="justify-content-center">
+                            {/* ... (Phần các Col chứa hình tròn giữ nguyên như cũ) ... */}
+                            {/* Bước 1 */}
+                            <Col lg={3} md={6} xs={12} className="learn-step-col mb-4">
+                                <div className="step-circle-wrapper">
+                                    <div className="step-circle">
+                                        <img src="/khoa-luyen-thi.jpg" alt="Giáo viên" />
+                                    </div>
                                 </div>
-                                <p className="step-title mt-3">Giáo viên hướng dẫn tận tâm</p>
-                            </div>
-                        </Col>
+                                <h5 className="step-title">Giáo viên hướng dẫn<br />tận tâm</h5>
+                            </Col>
 
-                        {/* Connecting Line 1 */}
-                        <div className="connecting-line line-1 d-none d-md-block"></div>
-
-                        {/* Step 2 */}
-                        <Col xs={6} sm={6} md={3} className="mb-4 mb-md-0 step-offset-down">
-                            <div className="step-item" data-aos="fade-up" data-aos-delay="200">
-                                <div className="step-circle">
-                                    <img
-                                        src="/my-thuat-thieu-nhi-37.jpg"
-                                        alt="Thời gian học linh động"
-                                        className="step-image"
-                                    />
+                            {/* Bước 2 - Thụt xuống */}
+                            <Col lg={3} md={6} xs={12} className="learn-step-col mb-4 mt-lg-5 pt-lg-5">
+                                <div className="step-circle-wrapper">
+                                    <div className="step-circle">
+                                        <img src="/my-thuat-thieu-nhi-37.jpg" alt="Thời gian" />
+                                    </div>
                                 </div>
-                                <p className="step-title mt-3">Thời gian học linh động</p>
-                            </div>
-                        </Col>
+                                <h5 className="step-title">Thời gian học linh<br />động</h5>
+                            </Col>
 
-                        {/* Connecting Line 2 */}
-                        <div className="connecting-line line-2 d-none d-md-block"></div>
-
-                        {/* Step 3 */}
-                        <Col xs={6} sm={6} md={3} className="mb-4 mb-md-0">
-                            <div className="step-item" data-aos="fade-up" data-aos-delay="300">
-                                <div className="step-circle">
-                                    <img
-                                        src="/SonDau.jpg"
-                                        alt="Phương pháp dạy thực hành"
-                                        className="step-image"
-                                    />
+                            {/* Bước 3 */}
+                            <Col lg={3} md={6} xs={12} className="learn-step-col mb-4">
+                                <div className="step-circle-wrapper">
+                                    <div className="step-circle">
+                                        <img src="/SonDau.jpg" alt="Phương pháp" />
+                                    </div>
                                 </div>
-                                <p className="step-title mt-3">Phương pháp dạy thực hành</p>
-                            </div>
-                        </Col>
+                                <h5 className="step-title">Phương pháp dạy<br />thực hành</h5>
+                            </Col>
 
-                        {/* Connecting Line 3 */}
-                        <div className="connecting-line line-3 d-none d-md-block"></div>
-
-                        {/* Step 4 */}
-                        <Col xs={6} sm={6} md={3} className="mb-4 mb-md-0 step-offset-down">
-                            <div className="step-item" data-aos="fade-up" data-aos-delay="400">
-                                <div className="step-circle">
-                                    <img
-                                        src="/khoa-hoc-son-dau.jpg"
-                                        alt="Không gian học nghệ thuật"
-                                        className="step-image"
-                                    />
+                            {/* Bước 4 - Thụt xuống */}
+                            <Col lg={3} md={6} xs={12} className="learn-step-col mb-4 mt-lg-5 pt-lg-5">
+                                <div className="step-circle-wrapper">
+                                    <div className="step-circle">
+                                        <img src="/khoa-hoc-son-dau.jpg" alt="Không gian" />
+                                    </div>
                                 </div>
-                                <p className="step-title mt-3">Không gian học nghệ thuật</p>
-                            </div>
-                        </Col>
-                    </Row>
+                                <h5 className="step-title">Không gian học nghệ<br />thuật</h5>
+                            </Col>
+                        </Row>
+                    </div>
                 </Container>
             </section>
 
-            <section style={{marginTop: '5%' }} id="triet-ly-giang-day">
+            <section style={{ marginTop: '5%' }} id="triet-ly-giang-day">
                 <Container>
                     <Row>
                         <Col md={6}>
@@ -247,7 +237,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                         src="/my-thuat-ppa-1.jpg"
                                         alt="Slide 1"
                                     />
-                                  
+
                                 </Carousel.Item>
 
                                 <Carousel.Item>
@@ -256,7 +246,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                         src="/my-thuat-ppa-3.jpg"
                                         alt="Slide 2"
                                     />
-                                  
+
                                 </Carousel.Item>
 
                                 <Carousel.Item>
@@ -265,7 +255,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                         src="/triet-ly-giang-day-ppa.jpg"
                                         alt="Slide 3"
                                     />
-                                   
+
                                 </Carousel.Item>
                             </Carousel>
                         </Col>
@@ -284,7 +274,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                             <div className="title-underline-teacher"></div>
                         </Col>
                     </Row>
-                    
+
                     {loading && (
                         <div className="text-center"><Spinner animation="border" variant="primary" /></div>
                     )}
@@ -308,9 +298,9 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                             <Col key={gv.id} lg={3} md={6} className="mb-4">
                                                 <Card className="teacher-card">
                                                     <div className="teacher-image-wrapper">
-                                                        <Card.Img 
-                                                            variant="top" 
-                                                            src={APIRoute.getUrlImage(gv.avatar) || 'https://via.placeholder.com/400x500?text=No+Image'} 
+                                                        <Card.Img
+                                                            variant="top"
+                                                            src={APIRoute.getUrlImage(gv.avatar) || 'https://via.placeholder.com/400x500?text=No+Image'}
                                                             className="teacher-image"
                                                         />
                                                     </div>
@@ -328,11 +318,11 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                             ))}
                         </Carousel>
                     )}
-                     {!loading && giaoVien.length === 0 && (
+                    {!loading && giaoVien.length === 0 && (
                         <Col className="text-center">
                             <p>Không có thông tin giáo viên để hiển thị.</p>
                         </Col>
-                     )}
+                    )}
                 </Container>
             </section>
         </Container>

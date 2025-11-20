@@ -59,33 +59,93 @@
 }
 
 .slide-text {
-  max-width: 600px;
+  max-width: 100%; /* Xóa bỏ giới hạn 600px cũ để chữ được bung ra */
+  padding: 0 20px;
+  margin: 0 auto; /* Căn giữa khối văn bản */
 }
 
 .slide-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-size: 4rem; /* Tăng kích thước chữ một chút */
+  font-weight: 800; /* Đậm hơn để ấn tượng hơn */
+  margin-bottom: 1.5rem;
   line-height: 1.2;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  animation: slideInLeft 1s ease-out;
+  color: #ffffff;
+  
+  /* Kỹ thuật ép chữ nằm trên 1 hàng */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* Hiệu ứng đổ bóng đẹp hơn, tạo chiều sâu */
+  text-shadow: 
+    0 4px 8px rgba(0,0,0,0.6),
+    0 0 20px rgba(102, 126, 234, 0.4); /* Bóng màu tím nhẹ theo tông chủ đạo */
+    
+  animation: slideInDown 1s ease-out;
 }
 
 .slide-subtitle {
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.8rem;
+  font-weight: 500;
   margin-bottom: 1.5rem;
-  color: #ffd700;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-  animation: slideInLeft 1s ease-out 0.2s both;
+  color: #ffd700; /* Màu vàng giữ nguyên */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: slideInUp 1s ease-out 0.3s both;
 }
 
 .slide-description {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   opacity: 0.95;
-  animation: slideInLeft 1s ease-out 0.4s both;
+  max-width: 800px; /* Giới hạn độ rộng mô tả để dễ đọc hơn */
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  animation: slideInUp 1s ease-out 0.5s both;
+}
+
+/* Thêm animation mới mượt hơn */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* QUAN TRỌNG: Xử lý cho màn hình điện thoại (Mobile) */
+@media (max-width: 768px) {
+  .slide-title {
+    font-size: 2rem;
+    white-space: normal; /* Trên điện thoại PHẢI cho xuống hàng nếu không sẽ bị vỡ giao diện */
+    line-height: 1.3;
+  }
+  
+  .slide-subtitle {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+  
+  .slide-description {
+    font-size: 0.95rem;
+  }
 }
 
 

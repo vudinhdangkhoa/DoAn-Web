@@ -46,6 +46,7 @@ function DangKy() {
 
     // Hàm validate form
     const validateForm = () => {
+        window.scrollTo(0, 0);
         if (!name.trim()) {
             setErrorMessage("Vui lòng nhập họ và tên.");
             return false;
@@ -156,7 +157,7 @@ function DangKy() {
 
                 setTimeout(() => {
                     navigate('/DangNhap');
-                }, 2000);
+                }, 2500);
             }
 
         } catch (error) {
@@ -264,7 +265,7 @@ function DangKy() {
                                 </div>
 
                                 {/* Form */}
-                                <Form onSubmit={handleSubmit} noValidate>
+                                <Form onSubmit={handleSubmit} >
                                     <Row>
                                         {/* Họ và Tên */}
                                         <Col md={12} className="mb-3">
@@ -467,6 +468,7 @@ function DangKy() {
                                                 boxShadow: '0 8px 25px rgba(40, 167, 69, 0.3)',
                                                 transition: 'all 0.3s ease'
                                             }}
+
                                         >
                                             {IsLoading ? (
                                                 <>
@@ -576,6 +578,22 @@ function DangKy() {
                         backdropFilter: 'blur(20px)'
                     }}
                 >
+                    {/* --- THÊM PHẦN ALERT VÀO ĐÂY --- */}
+                    {errorMessage && (
+                        <Alert variant="danger" className="mb-3 shadow-sm border-0" style={{ fontSize: '0.9rem' }}>
+                            <i className="fas fa-exclamation-triangle me-2"></i>
+                            {errorMessage}
+                        </Alert>
+                    )}
+
+                    {successMessage && (
+                        <Alert variant="success" className="mb-3 shadow-sm border-0" style={{ fontSize: '0.9rem' }}>
+                            <i className="fas fa-check-circle me-2"></i>
+                            {successMessage}
+                        </Alert>
+                    )}
+                    {/* ------------------------------- */}
+
                     <div className="text-center mb-4">
                         <div
                             className="mx-auto mb-3 d-flex align-items-center justify-content-center"
@@ -616,7 +634,6 @@ function DangKy() {
                                 placeholder="000000"
                                 value={otp}
                                 onChange={(e) => {
-                                    // Chỉ cho phép nhập số và tối đa 6 ký tự
                                     const value = e.target.value.replace(/\D/g, '').slice(0, 6);
                                     setOtp(value);
                                 }}
@@ -642,7 +659,7 @@ function DangKy() {
                         </div>
                     </Form.Group>
 
-                    {/* Progress indicator */}
+                    {/* Progress indicator - Giữ nguyên */}
                     <div className="text-center mb-3">
                         <div className="d-flex justify-content-center align-items-center">
                             <div className="step-indicator completed">
@@ -803,7 +820,7 @@ function DangKy() {
             background-color: rgba(255, 255, 255, 0.3);
         }
     `}
-    </style>
+                </style>
             </Modal>
         </div>
     );

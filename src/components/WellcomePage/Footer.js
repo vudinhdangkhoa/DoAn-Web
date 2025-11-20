@@ -14,7 +14,7 @@ function Footer() {
                                 className=' me-2'
                             >
                                 <img
-                                    src="/logoKSL.png"
+                                    src="/logo-foo.png"
                                     height="180"
                                     alt="Mỹ Thuật KSL"
                                     className="d-inline-block align-top me-2"
@@ -22,7 +22,7 @@ function Footer() {
                             </div>
                             <div>
                                 <h5 className="mb-0 text-danger fw-bold">
-                                    KSL ART
+                                    PPA ART
                                 </h5>
                                 <small className="text-muted">
                                     SCHOOL OF FINE ARTS
@@ -35,7 +35,7 @@ function Footer() {
                     <Col lg={9} md={12}>
                         <div className="mb-3">
                             <h5 className="text-danger fw-bold mb-3 text-center text-lg-start">
-                                HỆ THỐNG TRUNG TÂM MỸ THUẬT KSL
+                                HỆ THỐNG TRUNG TÂM MỸ THUẬT PPA ART
                             </h5>
                         </div>
 
@@ -43,23 +43,12 @@ function Footer() {
                             {/* Left Column - Addresses */}
                             <Col lg={7} md={12} className="mb-3 mb-lg-0">
                                 <div className="mb-3">
-                                    <strong className="text-dark">KSL Quận 1:</strong>
+                                    <strong className="text-dark">PPA Tân Phú:</strong>
                                     <span className="ms-2 text-muted">
-                                        Số 123 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP.HCM
+                                        Số 11 Yên Đỗ, Phường Tân Thành, Quận Tân Phú, TP.HCM
                                     </span>
                                 </div>
-                                <div className="mb-3">
-                                    <strong className="text-dark">KSL Quận 3:</strong>
-                                    <span className="ms-2 text-muted">
-                                        Số 456 Võ Văn Tần, Phường 6, Quận 3, TP.HCM
-                                    </span>
-                                </div>
-                                <div className="mb-3">
-                                    <strong className="text-dark">KSL Thủ Đức:</strong>
-                                    <span className="ms-2 text-muted">
-                                        Số 789 Võ Văn Ngân, Phường Linh Chiểu, TP Thủ Đức, TP.HCM
-                                    </span>
-                                </div>
+                               
                             </Col>
 
                             {/* Right Column - Contact Info */}
@@ -83,14 +72,14 @@ function Footer() {
                                         <i className="fas fa-envelope text-danger me-2"></i>
                                         Email:
                                     </strong>
-                                    <span className="ms-2 text-muted">contact@kslart.edu.vn</span>
+                                    <span className="ms-2 text-muted">contact@ppaart.edu.vn</span>
                                 </div>
                                 <div className="mb-3">
                                     <strong className="text-dark">
                                         <i className="fas fa-globe text-danger me-2"></i>
                                         Website:
                                     </strong>
-                                    <span className="ms-2 text-muted">kslart.edu.vn</span>
+                                    <span className="ms-2 text-muted">ppaart.edu.vn</span>
                                 </div>
                             </Col>
                         </Row>
@@ -101,11 +90,9 @@ function Footer() {
                 <Row className="mt-4 pt-4 border-top">
                     <Col lg={8} md={12} className="text-center text-lg-start mb-3 mb-lg-0">
                         <p className="mb-0 text-muted">
-                            © 2024 <strong className="text-danger">MỸ THUẬT KSL</strong> - THE SCHOOL OF FINE ARTS KSL
+                            © 2025 <strong className="text-danger">MỸ THUẬT PPA</strong> - THE SCHOOL OF FINE ARTS PPA
                         </p>
-                        <small className="text-muted">
-                            Tất cả quyền được bảo lưu. Thiết kế bởi KSL Development Team.
-                        </small>
+                        
                     </Col>
 
                     <Col lg={4} md={12} className="text-center text-lg-end">

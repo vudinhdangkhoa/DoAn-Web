@@ -67,7 +67,9 @@ function DangNhap() {
          localStorage.setItem('UserId', response.data.userId);
          localStorage.setItem('status', response.data.status);
          setIsLoading(true);
-         navigate(-1); 
+         setTimeout(() => {
+          navigate(-1); 
+         }, 1500);
        } else {
          setErrorMessage(response.data.message);
          setIsLoading(false);
@@ -101,7 +103,9 @@ function DangNhap() {
         setIsLoading(true);
         setSuccessMessage('Đăng nhập Google thành công');
         console.log('Google Sign-In Success:', credentialResponse);
-        navigate(-1);
+        setTimeout(() => {
+          navigate(-1); 
+         }, 1500);
       }
     } catch (error) {
       console.log(error.status);

@@ -95,7 +95,7 @@ function PaymentResult() {
                             <Card.Body>
                                 {renderResult()}
                                 <div className="text-center mt-4">
-                                    <Button as={Link} to="/" variant="primary">Quay Về Trang Chủ</Button>
+                                    <Button as={Link} to="/" variant="primary" disabled={isLoading}>Quay Về Trang Chủ</Button>
                                 </div>
                             </Card.Body>
                         </Card>

@@ -13,12 +13,17 @@
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 400px; /* Chiều cao cố định, bạn có thể chỉnh 350px hoặc 450px tùy ý */
+    position: relative;
+    background-color: #f0f0f0;
 }
 
 .course-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* QUAN TRỌNG: Cắt ảnh để vừa khung mà không bị méo */
+    object-position: center;
 }
 
 .course-breadcrumb .breadcrumb-item a {

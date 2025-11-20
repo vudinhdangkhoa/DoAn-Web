@@ -66,7 +66,7 @@ function Slideshow({ navigate }) {
 
               <Container className="slide-content-container">
                 <Row className="align-items-center min-vh-50">
-                  <Col lg={6} md={8} className="slide-content">
+                  <Col lg={10} md={12} className="slide-content text-center">
                     <div className="slide-text">
                       <h2 className="slide-title">
                         {slide.title}

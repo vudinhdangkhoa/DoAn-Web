@@ -289,7 +289,7 @@ function ThongTinCaNhan() {
                                     style={{ display: 'none' }}
                                     accept="image/png, image/jpeg, image/jpg"
                                 />
-                                <Image src={avatarPreview || 'https://via.placeholder.com/150'} roundedCircle className="profile-avatar mb-3" />
+                                 {avatarPreview ? <Image src={avatarPreview } roundedCircle className="profile-avatar mb-3" /> : <i className="fas fa-user-circle fa-5x text-black mb-3"></i>}
                                 <h4 className="profile-name">{phuHuynhInfo?.tenPh}</h4>
                                 <p className="profile-usertype text-muted">Phụ Huynh</p>
                                 
@@ -406,7 +406,7 @@ function ThongTinCaNhan() {
                                                     phuHuynhInfo.hocVien.map(hv => (
                                                         <ListGroup.Item key={hv.idHocVien}>
                                                             <div className="d-flex align-items-center">
-                                                                <Image src={APIRoute.getUrlImage(hv.avatar) || 'https://via.placeholder.com/50'} className="student-avatar" />
+                                                                {hv.avatar?<Image src={APIRoute.getUrlImage(hv.avatar) || 'https://via.placeholder.com/50'} className="student-avatar" /> : <i className="fas fa-user-circle fa-2x text-black me-2"></i>}
                                                                 <div className="student-info">
                                                                     <h6>{hv.tenHv}</h6>
                                                                     <small className="text-muted">Ngày sinh: {new Date(hv.ngaySinh).toLocaleDateString('vi-VN')}</small>

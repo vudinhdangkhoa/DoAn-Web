@@ -84,7 +84,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                 <i className="fas fa-phone"></i> Hotline: 0907 401 493 - 0905 984 268
                             </span>
                             <span>
-                                <i className="fas fa-envelope"></i> mythuatksl@gmail.com
+                                <i className="fas fa-envelope"></i> mythuatppa@gmail.com
                             </span>
                         </div>
 
@@ -134,7 +134,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                             ) : (
                                 <div className="d-flex gap-2">
                                     <Button
-                                        variant="outline-light"
+                                        variant="light"
                                         size="sm"
                                         onClick={() => navigate && navigate('/DangKy')}
                                         className="border-0"
@@ -173,14 +173,14 @@ function CustomNavbar({ navigate, courses = [] }) {
                         }}
                     >
                         <img
-                            src="/logoKSL.png"
-                            height="40"
+                            src="/logo-foo.png"
+                            height="70"  // Tăng từ 40 lên 70 hoặc 80 tùy nhu cầu
                             alt="Mỹ Thuật KSL"
-                            className="d-inline-block align-top me-2"
+                            className="d-inline-block align-middle me-3" // Đổi align-top thành align-middle, tăng margin
                         />
-                        <span className="brand-text">
-                            <strong>MỸ THUẬT KSL</strong>
-                            <small className="d-block text-muted">THE SCHOOL OF FINE ARTS</small>
+                        <span className="brand-text d-flex flex-column justify-content-center">
+                            <strong className="brand-title">MỸ THUẬT PPA</strong>
+                            <small className="brand-subtitle text-muted">THE SCHOOL OF FINE ARTS</small>
                         </span>
                     </Navbar.Brand>
 
@@ -234,7 +234,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                     <i className="fas fa-child me-2"></i>
                                     Mỹ thuật thiếu nhi
                                 </NavDropdown.Item> */}
-                                {console.log("courses data: ",courses)}
+                                {console.log("courses data: ", courses)}
                                 {
 
                                     courses.length > 0 && courses.map((course) => {
@@ -242,14 +242,14 @@ function CustomNavbar({ navigate, courses = [] }) {
                                             <NavDropdown.Item>
                                                 <Button variant="link" className="text-decoration-none p-0" onClick={() => navigate(`/danh-sach-khoa-hoc/${course.id}`)}>
                                                     <i className="fas fa-child me-2"></i>
-                                                {course.tenLoai}
+                                                    {course.tenLoai}
                                                 </Button>
                                             </NavDropdown.Item>
                                         );
                                     })
                                 }
                             </NavDropdown>
-                           
+
                             <Nav.Link href="#" className="nav-item-custom">
                                 LIÊN HỆ
                             </Nav.Link>
@@ -268,7 +268,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                                     onError={(e) => {
                                                         console.error('Image load error:', e);
                                                         console.log('Failed URL:', user.avatar);
-                                                       console.log('User data:', user);
+                                                        console.log('User data:', user);
                                                     }}
                                                 />
                                             ) : (
@@ -308,7 +308,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                             }}
                                         >
                                             <i className="fas fa-cog me-2"></i>
-                                           Lịch sử thanh toán
+                                            Lịch sử thanh toán
                                         </Nav.Link>
                                         <Nav.Link
                                             className="mobile-nav-item py-2 text-danger"

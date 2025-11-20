@@ -188,7 +188,7 @@ function XemLichHoc() {
                     <div className="text-center"><Spinner animation="border" /></div>
                 ) : error ? (
                     <Alert variant="danger">{error}</Alert>
-                ) : (
+                ) : scheduleData.length>0 ? (
                     <>
                         <Row className="justify-content-center">
                             <Col md={8}>
@@ -243,6 +243,9 @@ function XemLichHoc() {
                             </Row>
                         )}
                     </>
+                ):
+                (
+                    <Alert variant="info">Chưa có lịch học để hiển thị.</Alert>
                 )}
             </Container>
             <Footer />

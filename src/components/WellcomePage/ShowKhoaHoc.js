@@ -12,7 +12,7 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
     const containerRef = useRef(null);
 
     const itemsPerSlide = 4; // 4 items mỗi slide
-    
+
     const handleCourseClick = (courseId) => {
         if (!isDragging) {
             navigate && navigate(`/danh-sach-khoa-hoc/${courseId}`);
@@ -27,7 +27,19 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
     const truncateText = (text, maxLength = 120) => {
         if (!text) return '';
         if (text.length <= maxLength) return text;
-        return text.substring(0, maxLength).trim() + '...';
+
+        // Cắt cứng tại giới hạn maxLength trước
+        let subString = text.substring(0, maxLength);
+
+        // Tìm vị trí khoảng trắng cuối cùng trong chuỗi đã cắt
+        const lastSpaceIndex = subString.lastIndexOf(' ');
+
+        // Nếu tìm thấy khoảng trắng (để tránh trường hợp 1 từ quá dài chiếm hết maxLength)
+        if (lastSpaceIndex > 0) {
+            subString = subString.substring(0, lastSpaceIndex);
+        }
+
+        return subString + '...';
     };
 
     // Chia courses thành các slides
@@ -51,10 +63,10 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
 
     const handleMove = (e) => {
         if (startX.current === 0) return;
-        
+
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         currentX.current = clientX;
-        
+
         const diffX = Math.abs(clientX - startX.current);
         if (diffX > 10) {
             setIsDragging(true);
@@ -79,7 +91,7 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
 
         startX.current = 0;
         currentX.current = 0;
-        
+
         // Reset dragging state after a short delay
         setTimeout(() => setIsDragging(false), 100);
     };
@@ -116,14 +128,14 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
                 {/* Section Header */}
                 <Row>
                     <Col xs={12} className="text-center mb-5">
-                        <h2 className="courses-title">KHÓA HỌC KSL</h2>
+                        <h2 className="courses-title">KHÓA HỌC PPA</h2>
                         <div className="title-underline"></div>
                     </Col>
                 </Row>
 
                 {/* Courses Carousel */}
                 {courses.length > 0 ? (
-                    <div 
+                    <div
                         className="courses-carousel"
                         ref={containerRef}
                         onMouseDown={handleStart}
@@ -149,15 +161,15 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
                                         {slideItems.map((course, index) => {
                                             const globalIndex = slideIndex * itemsPerSlide + index;
                                             return (
-                                                <Col 
-                                                    key={course.id} 
-                                                    lg={3} 
-                                                    md={6} 
-                                                    sm={6} 
-                                                    xs={12} 
+                                                <Col
+                                                    key={course.id}
+                                                    lg={3}
+                                                    md={6}
+                                                    sm={6}
+                                                    xs={12}
                                                     className="mb-4"
                                                 >
-                                                    <div 
+                                                    <div
                                                         className="course-card text-center"
                                                         style={{ cursor: isDragging ? 'grabbing' : 'pointer' }}
                                                         onClick={() => handleCourseClick(course.id)}
@@ -165,27 +177,27 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
                                                         {/* Hình ảnh tròn với viền gradient */}
                                                         <div className={`course-image-wrapper gradient-border-${(globalIndex % 4) + 1}`}>
                                                             <div className="course-image-inner">
-                                                                <Image 
-                                                                    src={APIRoute.getUrlImage(course.hinhAnh)} 
-                                                                    alt={course.tenLoai} 
+                                                                <Image
+                                                                    src={APIRoute.getUrlImage(course.hinhAnh)}
+                                                                    alt={course.tenLoai}
                                                                     className="course-image"
                                                                     draggable={false}
                                                                 />
                                                             </div>
                                                         </div>
-                                                        
+
                                                         {/* Course Title */}
                                                         <h4 className="course-title mt-4 mb-3">
                                                             {course.tenLoai.toUpperCase()}
                                                         </h4>
-                                                        
+
                                                         {/* Course Description */}
                                                         <p className="course-description px-2" title={course.moTa}>
                                                             {truncateText(course.moTa, 100)}
                                                         </p>
-                                                        
+
                                                         {/* CTA Button */}
-                                                        <Button 
+                                                        <Button
                                                             className="course-btn"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
@@ -206,14 +218,14 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
                         {/* Custom Navigation Arrows */}
                         {slides.length > 1 && (
                             <>
-                                <button 
+                                <button
                                     className="custom-carousel-prev"
                                     onClick={() => setActiveIndex(Math.max(0, activeIndex - 1))}
                                     disabled={activeIndex === 0}
                                 >
                                     <i className="fas fa-chevron-left"></i>
                                 </button>
-                                <button 
+                                <button
                                     className="custom-carousel-next"
                                     onClick={() => setActiveIndex(Math.min(slides.length - 1, activeIndex + 1))}
                                     disabled={activeIndex === slides.length - 1}
@@ -223,7 +235,7 @@ function ShowKhoaHoc({ courses = [], loading = false, error = null, navigate, on
                             </>
                         )}
 
-                        
+
                     </div>
                 ) : (
                     <Row>

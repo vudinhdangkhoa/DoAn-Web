@@ -160,13 +160,12 @@ function ChiTietKhoaHoc() {
             } else {
                 setPaymentError(response.data.message || "Không thể tạo thanh toán.");
             }
-
+             setIsCreatingPayment(false);
         } catch (error) {
             setPaymentError(error.response?.data?.message || "Đã xảy ra lỗi kết nối.");
             console.error("Lỗi khi tạo thanh toán:", error);
-        } finally {
-            setIsCreatingPayment(false);
-        }
+             setIsCreatingPayment(false);
+        } 
     };
 
     // Hàm định dạng TimeOnly (HH:mm:ss) thành HH:mm
@@ -276,6 +275,11 @@ function ChiTietKhoaHoc() {
                                     <Tab eventKey="objective" title="Mục Tiêu Khóa Học">
                                         <div className="tab-content">{courseDetail.mucTieu}</div>
                                     </Tab>
+                                    <Tab eventKey="roadmap" title="Lộ Trình">
+                                        <div className="tab-content" style={{ whiteSpace: 'pre-line', lineHeight: '1.8' }}>
+                                            {courseDetail.loTrinh}
+                                        </div>
+                                    </Tab>
                                 </Tabs>
                             </Col>
                         </Row>
@@ -361,7 +365,7 @@ function ChiTietKhoaHoc() {
                             <h5>Thông Tin Lớp Học</h5>
                             <p><strong>Lớp:</strong> {selectedLopHoc.tenLop}</p>
                             <p><strong>Khóa học:</strong> {courseDetail?.tenKhoaHoc}</p>
-                            <p><strong>Học phí:</strong> 
+                            <p><strong>Học phí:</strong>
                                 <span className="text-danger fw-bold">
                                     {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(courseDetail?.hocPhi - (courseDetail?.giamGia * courseDetail?.hocPhi) || 0)}
                                 </span>
@@ -408,7 +412,7 @@ function ChiTietKhoaHoc() {
                                     ) : (
                                         <Alert variant="info" className="d-flex justify-content-between align-items-center">
                                             <span>Bạn chưa thêm thông tin học viên.</span>
-                                            <Button variant="primary" size="sm" onClick={() => navigate('/them-hoc-vien')}>
+                                            <Button variant="primary" size="sm" onClick={() => navigate('/thong-tin-ca-nhan')}>
                                                 Thêm ngay
                                             </Button>
                                         </Alert>
