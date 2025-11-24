@@ -99,6 +99,7 @@ function ChiTietKhoaHoc() {
     // Xử lý khi nhấn nút "Đăng ký"
     const handleDangKyClick = (lopHoc) => {
         if (!localStorage.getItem('token')) {
+            alert("Vui lòng đăng nhập để tiếp tục đăng ký khóa học.");
             navigate('/DangNhap'); // Chuyển hướng đến trang đăng nhập nếu chưa có token
             return;
         }
@@ -138,11 +139,15 @@ function ChiTietKhoaHoc() {
         setIsCreatingPayment(true);
         setPaymentError(null);
 
+        const original = Number(courseDetail?.hocPhi) || 0;
+        const discount = Number(courseDetail?.giamGia) || 0;
+        const finalAmount = original - discount;
+
         const registrationData = {
             IdLopHoc: selectedLopHoc.id,
             HocVienId: isRegisteringForChild ? parseInt(selectedHocVien, 10) : 0,
             PhuHuynhId: parseInt(localStorage.getItem('UserId'), 10),
-            Amount: courseDetail?.hocPhi - (courseDetail?.giamGia * courseDetail?.hocPhi) || 0,
+            Amount: finalAmount,
             PaymentMethod: paymentMethod, // <-- Gửi phương thức đã chọn
             KhoaHocId: idKhoaHoc
         };
@@ -160,12 +165,12 @@ function ChiTietKhoaHoc() {
             } else {
                 setPaymentError(response.data.message || "Không thể tạo thanh toán.");
             }
-             setIsCreatingPayment(false);
+            setIsCreatingPayment(false);
         } catch (error) {
             setPaymentError(error.response?.data?.message || "Đã xảy ra lỗi kết nối.");
             console.error("Lỗi khi tạo thanh toán:", error);
-             setIsCreatingPayment(false);
-        } 
+            setIsCreatingPayment(false);
+        }
     };
 
     // Hàm định dạng TimeOnly (HH:mm:ss) thành HH:mm
@@ -244,24 +249,29 @@ function ChiTietKhoaHoc() {
 
                                 <div className="course-price-main">
                                     {(() => {
-                                        const original = Number(courseDetail.hocPhi) || 0;
-                                        let giamGia = Number(courseDetail.giamGia) || 0; // nếu là 0.1 thì ok
-                                        // Nếu giamGia được lưu là 10 (tức %), chuyển về fraction
-                                        if (giamGia > 1) giamGia = giamGia / 100;
-                                        const percent = Math.round(giamGia * 100);
-                                        const discounted = giamGia > 0 ? Math.round(original * (1 - giamGia)) : original;
+                                        const original = Number(courseDetail.hocPhi) || 0; // 1.600.000
+                                        const discountAmount = Number(courseDetail.giamGia) || 0; // 160.000
+
+                                        // Tính giá cuối cùng: Giá gốc - Số tiền giảm
+                                        const finalPrice = original - discountAmount;
+
+                                        // Tính % để hiển thị cho đẹp: (Tiền giảm / Giá gốc) * 100
+                                        const percent = original > 0 ? Math.round((discountAmount / original) * 100) : 0;
+
                                         const fmt = (v) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(v);
 
-                                        return giamGia > 0 ? (
+                                        return discountAmount > 0 ? (
                                             <>
-                                                <div><del className="text-muted">{fmt(original)}</del></div>
+                                                <div className="d-flex align-items-center gap-2">
+                                                    <del className="text-muted fs-5">{fmt(original)}</del>
+                                                    <span className="badge bg-danger">-{percent}%</span>
+                                                </div>
                                                 <div className="mt-1">
-                                                    <span className="fw-bold text-danger">{fmt(discounted)}</span>
-                                                    <small className="text-success ms-2">-{percent}%</small>
+                                                    <span className="fw-bold text-primary fs-2">{fmt(finalPrice)}</span>
                                                 </div>
                                             </>
                                         ) : (
-                                            fmt(original)
+                                            <span className="fw-bold text-primary fs-2">{fmt(original)}</span>
                                         );
                                     })()}
                                 </div>
@@ -366,9 +376,17 @@ function ChiTietKhoaHoc() {
                             <p><strong>Lớp:</strong> {selectedLopHoc.tenLop}</p>
                             <p><strong>Khóa học:</strong> {courseDetail?.tenKhoaHoc}</p>
                             <p><strong>Học phí:</strong>
-                                <span className="text-danger fw-bold">
-                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(courseDetail?.hocPhi - (courseDetail?.giamGia * courseDetail?.hocPhi) || 0)}
+                                <span className="text-danger fw-bold ms-2">
+                                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+                                        (courseDetail?.hocPhi || 0) - (courseDetail?.giamGia || 0)
+                                    )}
                                 </span>
+                                {/* Hiển thị giá gốc gạch ngang nếu có giảm giá */}
+                                {(courseDetail?.giamGia > 0) && (
+                                    <span className="text-muted text-decoration-line-through ms-2 small">
+                                        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(courseDetail?.hocPhi)}
+                                    </span>
+                                )}
                             </p>
                         </div>
                     )}
@@ -442,6 +460,7 @@ function ChiTietKhoaHoc() {
                                     onChange={(e) => setPaymentMethod(e.target.value)}
                                 />
                                 <Form.Check
+                                className=" pt-2"
                                     type="radio"
                                     id="payment-vnpay"
                                     name="paymentMethod"

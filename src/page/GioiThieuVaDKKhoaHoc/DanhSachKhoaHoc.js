@@ -122,24 +122,31 @@ function DanhSachKhoaHoc() {
                                                     </span>
                                                     <span className="course-fee">
                                                         {(() => {
-                                                            const original = Number(course.hocPhi) || 0;
-                                                            let giamGia = Number(course.giamGia) || 0; // nếu là 0.1 thì ok
-                                                            // Nếu giamGia được lưu là 10 (tức %), chuyển về fraction
-                                                            if (giamGia > 1) giamGia = giamGia / 100;
-                                                            const percent = Math.round(giamGia * 100);
-                                                            const discounted = giamGia > 0 ? Math.round(original * (1 - giamGia)) : original;
+                                                            const original = Number(course.hocPhi) || 0;     // Giá gốc (1.600.000)
+                                                            const discountAmount = Number(course.giamGia) || 0; // Số tiền giảm (160.000)
+
+                                                            // Tính giá sau giảm: Giá gốc - Tiền giảm
+                                                            const finalPrice = original - discountAmount;
+
+                                                            // Tính % giảm để hiển thị cho đẹp
+                                                            const percent = original > 0 ? Math.round((discountAmount / original) * 100) : 0;
+
                                                             const fmt = (v) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(v);
 
-                                                            return giamGia > 0 ? (
+                                                            return discountAmount > 0 ? (
                                                                 <>
-                                                                    <div><del className="text-muted">{fmt(original)}</del></div>
-                                                                    <div className="mt-1">
-                                                                        <span className="fw-bold text-danger">{fmt(discounted)}</span>
-                                                                        <small className="text-success ms-2">-{percent}%</small>
+                                                                    {/* Giá gốc bị gạch ngang */}
+                                                                    <div><del className="text-muted small">{fmt(original)}</del></div>
+
+                                                                    {/* Giá mới + % giảm */}
+                                                                    <div className="d-flex align-items-center gap-2">
+                                                                        <span className="fw-bold text-danger">{fmt(finalPrice)}</span>
+                                                                        <span className="badge bg-danger small" style={{ fontSize: '0.7rem' }}>-{percent}%</span>
                                                                     </div>
                                                                 </>
                                                             ) : (
-                                                                fmt(original)
+                                                                // Nếu không giảm thì chỉ hiện giá gốc
+                                                                <span className="fw-bold text-primary">{fmt(original)}</span>
                                                             );
                                                         })()}
                                                     </span>
