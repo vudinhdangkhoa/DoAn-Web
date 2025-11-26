@@ -8,7 +8,7 @@ function Footer() {
             <Container>
                 <Row className="align-items-center">
                     {/* Logo Section */}
-                    <Col lg={3} md={12} className="text-center text-lg-start mb-4 mb-lg-0">
+                    <Col lg={4} md={12} className="text-center text-lg-start mb-4 mb-lg-0">
                         <div className="d-flex align-items-center justify-content-center justify-content-lg-start">
                             <div
                                 className=' me-2'
@@ -24,7 +24,7 @@ function Footer() {
                                 <h5 className="mb-0 text-danger fw-bold">
                                     PPA ART
                                 </h5>
-                                <small className="text-muted">
+                                <small className="text-muted ">
                                     SCHOOL OF FINE ARTS
                                 </small>
                             </div>
@@ -32,7 +32,7 @@ function Footer() {
                     </Col>
 
                     {/* System Information */}
-                    <Col lg={9} md={12}>
+                    <Col lg={8} md={12}>
                         <div className="mb-3">
                             <h5 className="text-danger fw-bold mb-3 text-center text-lg-start">
                                 HỆ THỐNG TRUNG TÂM MỸ THUẬT PPA ART

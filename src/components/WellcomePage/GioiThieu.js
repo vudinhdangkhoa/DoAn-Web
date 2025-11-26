@@ -27,7 +27,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
             dropCap: 'M',
             title: 'MỸ THUẬT PPA',
             content: [
-                'Mỹ thuật không đơn giản chỉ là vẽ vời hay chỉ là một môn học năng khiếu mà nó bao hàm ý nghĩa về sự miêu tả cái đẹp, cảm nhận và gợi mở trí tưởng tượng để thể hiện bản thân. Mỹ thuật giúp con người phát triển nhận thức thẩm mỹ, biết cảm nhận và rung động trước cái đẹp.',
+                'ỹ thuật không đơn giản chỉ là vẽ vời hay chỉ là một môn học năng khiếu mà nó bao hàm ý nghĩa về sự miêu tả cái đẹp, cảm nhận và gợi mở trí tưởng tượng để thể hiện bản thân. Mỹ thuật giúp con người phát triển nhận thức thẩm mỹ, biết cảm nhận và rung động trước cái đẹp.',
                 'Nhờ mỹ thuật con người trở nên tự tin hơn, bộc lộ cá tính bản thân, phát triển khả năng tư duy về hình ảnh, trí tưởng tượng và óc sáng tạo. PPA được thành lập với sứ mệnh mang đến cho học viên những trải nghiệm nghệ thuật chất lượng cao nhất.',
                 'Chúng tôi tin rằng mỗi người đều có khả năng sáng tạo tiềm ẩn, cần được khơi dậy và phát triển thông qua những phương pháp giảng dạy khoa học và hiện đại. Môi trường học tập tại PPA luôn tràn đầy năng lượng tích cực.',
                 'Với đội ngũ giảng viên giàu kinh nghiệm và tâm huyết, PPA mong muốn tạo ra môi trường học tập rèn luyện tính sáng tạo và khả năng tư duy đang sẵn có trong mỗi người chúng ta.'
@@ -175,7 +175,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                         <img src="/khoa-luyen-thi.jpg" alt="Giáo viên" />
                                     </div>
                                 </div>
-                                <h5 className="step-title">Giáo viên hướng dẫn<br />tận tâm</h5>
+                                <h5 className="step-title">Giáo viên hướng dẫn tận tâm</h5>
                             </Col>
 
                             {/* Bước 2 - Thụt xuống */}
@@ -185,7 +185,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                         <img src="/my-thuat-thieu-nhi-37.jpg" alt="Thời gian" />
                                     </div>
                                 </div>
-                                <h5 className="step-title">Thời gian học linh<br />động</h5>
+                                <h5 className="step-title">Thời gian học linh động</h5>
                             </Col>
 
                             {/* Bước 3 */}
@@ -195,7 +195,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                         <img src="/SonDau.jpg" alt="Phương pháp" />
                                     </div>
                                 </div>
-                                <h5 className="step-title">Phương pháp dạy<br />thực hành</h5>
+                                <h5 className="step-title">Phương pháp dạy thực hành</h5>
                             </Col>
 
                             {/* Bước 4 - Thụt xuống */}
@@ -205,7 +205,7 @@ function GioiThieu({ giaoVien = [], loading, error }) {
                                         <img src="/khoa-hoc-son-dau.jpg" alt="Không gian" />
                                     </div>
                                 </div>
-                                <h5 className="step-title">Không gian học nghệ<br />thuật</h5>
+                                <h5 className="step-title">Không gian học nghệ thuật</h5>
                             </Col>
                         </Row>
                     </div>

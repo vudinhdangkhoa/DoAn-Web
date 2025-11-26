@@ -122,7 +122,7 @@ function QuenMatKhau() {
                 setIsLoading(false);
                 setPassword('');
                 setTimeout(() => {
-                    navigate('/DangNhap');
+                    navigate(-1);
                 },2000);
             }
         } catch (error) {

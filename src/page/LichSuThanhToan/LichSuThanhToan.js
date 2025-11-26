@@ -69,8 +69,8 @@ function LichSuThanhToan() {
                                 <Nav variant="pills" className="flex-column student-tabs">
                                     {paymentData.map(student => (
                                         <Nav.Item key={student.idHocVien}>
-                                            <Nav.Link eventKey={student.idHocVien.toString()}>
-                                                <Image src={student.avatar || 'https://via.placeholder.com/40'} className="student-tab-avatar" />
+                                            <Nav.Link eventKey={student.idHocVien.toString()} >
+                                               {student.avatar==null ? <i className="fas fa-user-circle fa-2x text-black " ></i> : <Image src={student.avatar } className="student-tab-avatar" />}
                                                 {student.tenHv}
                                             </Nav.Link>
                                         </Nav.Item>

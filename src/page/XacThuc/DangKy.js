@@ -156,7 +156,9 @@ function DangKy() {
                 setIsLoading(false);
 
                 setTimeout(() => {
-                    navigate('/DangNhap');
+                    
+                    navigate('/DangNhap', { replace: true });
+
                 }, 2500);
             }
 
