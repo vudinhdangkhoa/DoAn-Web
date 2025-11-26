@@ -71,7 +71,7 @@ function LichSuThanhToan() {
                                     {paymentData.map(student => (
                                         <Nav.Item key={student.idHocVien}>
                                             <Nav.Link eventKey={student.idHocVien.toString()} >
-                                               {student.avatar==null ? <i className="fas fa-user-circle fa-2x text-black " ></i> : <Image src={APIRoute.getUrlImage(student.avatar) } className="student-tab-avatar" />}
+                                               {student.avatar==null ? <i className="fas fa-user-circle fa-2x text-black " ></i> : <Image src={student.avatar.startsWith('http://') || student.avatar.startsWith('https://') ? student.avatar : APIRoute.getUrlImage(student.avatar)} className="student-tab-avatar" />}
                                                 {student.tenHv}
                                             </Nav.Link>
                                         </Nav.Item>

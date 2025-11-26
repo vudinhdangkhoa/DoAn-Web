@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Container, Button, Dropdown, NavDropdown,Form,InputGroup } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button, Dropdown, NavDropdown, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
 import axios from 'axios';
@@ -145,21 +145,20 @@ function CustomNavbar({ navigate, courses = [] }) {
                                     </Dropdown.Menu>
                                 </Dropdown>
                             ) : (
-                                <div className="d-flex gap-2">
+                                <div className="auth-buttons-desktop">
                                     <Button
-                                        variant="light"
-                                        size="sm"
-                                        onClick={() => navigate && navigate('/DangKy')}
-                                        className="border-0"
-                                    >
-                                        Đăng ký
-                                    </Button>
-                                    <Button
-                                        variant="light"
-                                        size="sm"
+                                        className="nav-auth-btn btn-login-desktop"
                                         onClick={() => navigate && navigate('/DangNhap')}
                                     >
                                         Đăng nhập
+                                    </Button>
+
+                                    <Button
+                                        className="nav-auth-btn btn-register-desktop"
+                                        onClick={() => navigate && navigate('/DangKy')}
+                                    >
+                                        <i className="fas fa-user-plus me-2"></i>
+                                        Đăng ký
                                     </Button>
                                 </div>
                             )}
@@ -266,7 +265,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                             <Nav.Link href="#" className="nav-item-custom">
                                 LIÊN HỆ
                             </Nav.Link>
-                             <Form className="d-flex mx-lg-3 my-2 my-lg-0" onSubmit={handleSearch}>
+                            <Form className="d-flex mx-lg-3 my-2 my-lg-0" onSubmit={handleSearch}>
                                 <InputGroup size="sm">
                                     <Form.Control
                                         type="search"
@@ -276,8 +275,8 @@ function CustomNavbar({ navigate, courses = [] }) {
                                         onChange={(e) => setKeyword(e.target.value)}
                                         style={{ borderRadius: '20px 0 0 20px' }}
                                     />
-                                    <Button 
-                                        variant="outline-secondary" 
+                                    <Button
+                                        variant="outline-secondary"
                                         type="submit"
                                         className="border-start-0"
                                         style={{ borderRadius: '0 20px 20px 0', backgroundColor: 'white' }}
@@ -285,7 +284,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                         <i className="fas fa-search text-muted"></i>
                                     </Button>
                                 </InputGroup>
-                            </Form>   
+                            </Form>
                             {/* Auth section for mobile/tablet - chỉ hiển thị khi collapse */}
                             <div className="d-lg-none mt-3 pt-3 border-top">
                                 {user ? (

@@ -80,6 +80,63 @@
     transform: translateY(-2px);
 }
 
+/* Navbar.css */
+
+/* Container cho nhóm nút trên Desktop */
+.auth-buttons-desktop {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Style chung cho nút */
+.nav-auth-btn {
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    border-radius: 50px !important; /* Bo tròn kiểu viên thuốc */
+    padding: 6px 20px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    letter-spacing: 0.3px;
+}
+
+/* Nút Đăng nhập (Dạng outline nhẹ nhàng) */
+.btn-login-desktop {
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.btn-login-desktop:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: #fff !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+
+/* Nút Đăng ký (Nổi bật - Màu trắng chữ đen hoặc theo màu chủ đạo) */
+.btn-register-desktop {
+    background: #fff !important;
+    color: #d32f2f !important; /* Màu đỏ đậm cho chữ để đồng bộ logo, hoặc màu đen */
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-register-desktop:hover {
+    background: #f8f9fa !important;
+    transform: translateY(-2px); /* Nhảy nhẹ lên khi hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Icon bên trong nút */
+.nav-auth-btn i {
+    font-size: 0.85rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-register-desktop:hover i {
+    transform: rotate(-10deg) scale(1.1); /* Hiệu ứng icon lắc nhẹ */
+}
+
 /* Responsive */
 @media (max-width: 991px) {
     .top-contact-bar {
