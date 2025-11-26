@@ -11,6 +11,7 @@ import PaymentResult from "./page/Payment/PaymentResult";
 import XemLichHoc from "./page/XemLichHoc/XemLichHoc";
 import LichSuThanhToan from "./page/LichSuThanhToan/LichSuThanhToan";
 import Feedback from "./page/Feedback/feedback";
+import TimKiemKhoaHoc from "./page/TimKiemKhoaHoc/TimKiemKhoaHoc";
 function AppRouter() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function AppRouter() {
         <Route path="/xem-lich-hoc" element={<XemLichHoc />} />
         <Route path="/lich-su-thanh-toan" element={<LichSuThanhToan />} />
         <Route path="/feedback/:idLopHoc/:idHocVien" element={<Feedback />} />
+        <Route path="/tim-kiem-khoa-hoc" element={<TimKiemKhoaHoc />} />
       </Routes>
     </Router>
   );

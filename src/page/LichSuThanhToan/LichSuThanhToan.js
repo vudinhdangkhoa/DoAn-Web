@@ -7,6 +7,7 @@ import CustomNavbar from "../../components/WellcomePage/Navbar";
 import Footer from "../../components/WellcomePage/Footer";
 import { useCourses } from "../../Hooks/WellcomPageHook";
 import './LichSuThanhToan.css';
+import DungChung from "../../DungChung";
 
 function LichSuThanhToan() {
     const navigate = useNavigate();
@@ -70,7 +71,7 @@ function LichSuThanhToan() {
                                     {paymentData.map(student => (
                                         <Nav.Item key={student.idHocVien}>
                                             <Nav.Link eventKey={student.idHocVien.toString()} >
-                                               {student.avatar==null ? <i className="fas fa-user-circle fa-2x text-black " ></i> : <Image src={student.avatar } className="student-tab-avatar" />}
+                                               {student.avatar==null ? <i className="fas fa-user-circle fa-2x text-black " ></i> : <Image src={DungChung.getURL(student.avatar) } className="student-tab-avatar" />}
                                                 {student.tenHv}
                                             </Nav.Link>
                                         </Nav.Item>

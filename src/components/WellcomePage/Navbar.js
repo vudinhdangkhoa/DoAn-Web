@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Container, Button, Dropdown, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button, Dropdown, NavDropdown,Form,InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
 import axios from 'axios';
@@ -18,6 +18,19 @@ function CustomNavbar({ navigate, courses = [] }) {
             GetThongTinUser(userId);
         }
     }, []);
+
+    const [keyword, setKeyword] = useState(''); // State lưu từ khóa
+
+    // Hàm xử lý khi nhấn Enter hoặc nút Tìm kiếm
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (keyword.trim()) {
+            // Điều hướng sang trang tìm kiếm, truyền từ khóa qua URL param ?q=...
+            // Dùng encodeURIComponent để xử lý ký tự đặc biệt
+            navigate(`/tim-kiem-khoa-hoc?q=${encodeURIComponent(keyword.trim())}`);
+            setExpanded(false); // Đóng menu mobile nếu đang mở
+        }
+    };
 
     const handleLogout = async () => {
         const respone = await axios.post(APIRoute.getURL(`XacThuc/Logout`), {}, {
@@ -253,7 +266,26 @@ function CustomNavbar({ navigate, courses = [] }) {
                             <Nav.Link href="#" className="nav-item-custom">
                                 LIÊN HỆ
                             </Nav.Link>
-
+                             <Form className="d-flex mx-lg-3 my-2 my-lg-0" onSubmit={handleSearch}>
+                                <InputGroup size="sm">
+                                    <Form.Control
+                                        type="search"
+                                        placeholder="Tìm khóa học..."
+                                        className="border-end-0"
+                                        value={keyword}
+                                        onChange={(e) => setKeyword(e.target.value)}
+                                        style={{ borderRadius: '20px 0 0 20px' }}
+                                    />
+                                    <Button 
+                                        variant="outline-secondary" 
+                                        type="submit"
+                                        className="border-start-0"
+                                        style={{ borderRadius: '0 20px 20px 0', backgroundColor: 'white' }}
+                                    >
+                                        <i className="fas fa-search text-muted"></i>
+                                    </Button>
+                                </InputGroup>
+                            </Form>   
                             {/* Auth section for mobile/tablet - chỉ hiển thị khi collapse */}
                             <div className="d-lg-none mt-3 pt-3 border-top">
                                 {user ? (

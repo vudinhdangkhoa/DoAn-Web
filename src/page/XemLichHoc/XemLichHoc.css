@@ -1,87 +1,4 @@
-/* src/page/LichHoc/XemLichHoc.css */
-.schedule-page-container {
-    padding-top: 120px;
-    padding-bottom: 60px;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-}
-
-.student-selector-card {
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.class-list-card {
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-/* Timetable Styles */
-.timetable-container {
-    margin-top: 2rem;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    padding: 1.5rem;
-}
-
-.timetable-grid {
-    display: grid;
-    grid-template-columns: 60px repeat(7, 1fr); /* 1 column for time, 7 for days */
-    gap: 5px;
-}
-
-.timetable-header, .timetable-time, .timetable-slot {
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.timetable-header {
-    background-color: #0d6efd;
-    color: white;
-    font-weight: bold;
-}
-
-.timetable-time {
-    font-weight: bold;
-    font-size: 0.8rem;
-    color: #6c757d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.timetable-slot {
-    background-color: #f1f3f5;
-    min-height: 80px;
-    position: relative;
-}
-
-.timetable-event {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 8px;
-    border-radius: 8px; 
-    font-size: 0.85rem;
-    text-align: left;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.timetable-event:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.event-title {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 4px;
-}
-
-/* src/page/LichHoc/XemLichHoc.css */
+/* src/page/XemLichHoc/XemLichHoc.css */
 .schedule-page-container {
     padding-top: 120px;
     padding-bottom: 60px;
@@ -101,47 +18,55 @@
     padding: 1.5rem;
 }
 
-/* Timetable Header and Pagination */
+/* Header Controls */
 .timetable-header-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.timetable-header-controls h4 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    flex-grow: 1;
+.timetable-title-group {
     text-align: center;
+    flex-grow: 1;
 }
 
-/* Daily Schedule Card Layout */
-.daily-schedule-col {
-    padding: 10px;
+.timetable-title-group h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c3e50;
 }
 
+/* Date Picker input styling */
+.date-search-input {
+    max-width: 160px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* --- DAILY CARD STYLES (Dùng chung) --- */
 .daily-card {
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid #dee2e6;
     height: 100%;
-    transition: box-shadow 0.2s ease-in-out;
-    height: 100%; /* Giữ lại để các thẻ có nội dung dài bằng nhau */
-    min-height: 350px; /* Thêm chiều cao tối thiểu */
-    display: flex; /* Bật flexbox để điều khiển layout bên trong */
+    display: flex;
     flex-direction: column;
+    transition: all 0.2s;
 }
 
 .daily-card:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-color: #b6d4fe;
 }
 
 .daily-card-header {
     background-color: #f8f9fa;
     border-bottom: 1px solid #dee2e6;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem;
+    text-align: center;
 }
 
 .daily-card-header.is-today {
@@ -150,108 +75,129 @@
 }
 
 .day-name {
+    display: block;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
 }
 
 .date-number {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    opacity: 0.9;
 }
 
 .daily-card-body {
     padding: 0;
-    flex-grow: 1; /* Cho phép phần body chiếm hết không gian còn lại */
-    display: flex;
-    flex-direction: column;
+    flex-grow: 1;
+    background-color: #fff;
+    min-height: 150px; /* Chiều cao tối thiểu cho body */
 }
 
+/* Sự kiện trong ngày */
 .schedule-event {
-    padding: 1rem;
-    border-bottom: 1px solid #e9ecef;
-}
-.schedule-event:last-child {
-    border-bottom: none;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f1f3f5;
+    background-color: #eef2ff; /* Màu nền nhẹ cho sự kiện */
+    border-left: 3px solid #0d6efd;
+    margin: 5px;
+    border-radius: 4px;
 }
 
 .event-time {
     font-weight: bold;
     color: #0d6efd;
+    font-size: 0.8rem;
     display: block;
-    margin-bottom: 0.25rem;
 }
 
 .event-title {
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    margin: 4px 0;
+    color: #333;
 }
 
 .event-details {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #6c757d;
 }
 
 .no-events-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /*height: 100px;*/
-    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
     color: #adb5bd;
     font-style: italic;
+    font-size: 0.9rem;
 }
 
-/* === SLIDER STYLES === */
-.timetable-slider-wrapper {
-    position: relative;
-    padding: 0 40px; /* Tạo không gian cho các nút điều khiển */
+/* =========================================
+   RESPONSIVE LAYOUT (QUAN TRỌNG) 
+   ========================================= */
+
+/* 1. Giao diện DESKTOP (Màn hình >= 992px) */
+@media (min-width: 992px) {
+    .timetable-body-wrapper {
+        display: grid;
+        /* Chia thành 7 cột bằng nhau */
+        grid-template-columns: repeat(7, 1fr); 
+        gap: 10px;
+    }
+
+    .daily-schedule-col {
+        width: 100%; /* Chiếm hết ô grid */
+    }
+
+    /* Ẩn nút bấm slider trên desktop */
+    .slider-control-btn {
+        display: none !important;
+    }
 }
 
-.timetable-scroll-container {
-    display: flex;
-    overflow-x: auto; /* Cho phép cuộn ngang */
-    scroll-behavior: smooth; /* Tạo hiệu ứng cuộn mượt mà */
-    padding-bottom: 15px; /* Thêm khoảng đệm dưới để bóng của card không bị cắt */
-    /* Ẩn thanh cuộn mặc định */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-}
-.timetable-scroll-container::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
+/* 2. Giao diện MOBILE & TABLET (Màn hình < 992px) */
+@media (max-width: 991px) {
+    .timetable-container {
+        position: relative;
+        padding: 1rem 0.5rem;
+    }
 
-/* Sửa lại Col để nó không bị co lại trong flex container */
-.daily-schedule-col {
-    flex: 0 0 320px; /* Chiều rộng cố định cho mỗi thẻ ngày */
-    max-width: 320px;
-    padding: 10px;
-}
+    .timetable-body-wrapper {
+        display: flex;
+        overflow-x: auto; /* Cho phép trượt ngang */
+        scroll-behavior: smooth;
+        gap: 15px;
+        padding-bottom: 10px;
+        /* Ẩn thanh scrollbar */
+        scrollbar-width: none; 
+        -ms-overflow-style: none;
+    }
+    
+    .timetable-body-wrapper::-webkit-scrollbar { 
+        display: none; 
+    }
 
-/* Các nút điều khiển slider */
-.slider-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: white;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    font-size: 1.5rem;
-    color: #495057;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.slider-control:hover {
-    background-color: #f8f9fa;
-}
+    .daily-schedule-col {
+        min-width: 280px; /* Chiều rộng cố định để không bị co lại */
+        flex-shrink: 0;
+    }
 
-.slider-control.prev {
-    left: -10px;
-}
+    /* Nút điều hướng slider */
+    .slider-control-btn {
+        position: absolute;
+        top: 55%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 1px solid #dee2e6 !important;
+        color: #333 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: flex !important; /* Hiện nút trên mobile */
+        align-items: center;
+        justify-content: center;
+    }
 
-.slider-control.next {
-    right: -10px;
+    .slider-control-btn.prev { left: 0; }
+    .slider-control-btn.next { right: 0; }
 }

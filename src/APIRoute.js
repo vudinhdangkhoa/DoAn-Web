@@ -7,6 +7,9 @@ class APIRoute {
     static getURL(url){
         return `${this.baseUrl}/api/${url}`;
     }
+    static getSearchURL() {
+        return `${this.baseUrl}/api/TrangChu/TimKiemKhoaHoc`;
+    }
     // static getURL(url){
     //     return `https://2gcqx76s-5225.asse.devtunnels.ms/api/${url}`;
     // }
