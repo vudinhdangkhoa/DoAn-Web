@@ -201,3 +201,33 @@
     .slider-control-btn.prev { left: 0; }
     .slider-control-btn.next { right: 0; }
 }
+
+/* Thêm vào cuối file XemLichHoc.css */
+
+/* Style cho buổi học bị hủy (trangThai = false) */
+.schedule-event.cancelled {
+    border-left-color: #dc3545; /* Viền đỏ */
+    background-color: #fff5f5;  /* Nền đỏ nhạt */
+    opacity: 0.8;
+}
+
+.schedule-event.cancelled .event-time {
+    color: #dc3545; /* Giờ màu đỏ */
+    text-decoration: line-through; /* Gạch ngang giờ */
+}
+
+.schedule-event.cancelled .event-title {
+    color: #721c24;
+}
+
+.badge-cancelled {
+    background-color: #dc3545;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none !important; /* Không gạch ngang chữ này */
+}

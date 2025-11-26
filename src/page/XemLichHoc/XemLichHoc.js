@@ -384,8 +384,9 @@ function XemLichHoc() {
                     eventsByDay[eventDateString] = [];
                 }
                 
+                // Spread operator (...lh) sẽ tự động lấy luôn thuộc tính trangThai từ API
                 eventsByDay[eventDateString].push({
-                    ...lh,
+                    ...lh, 
                     tenLopHoc: hd.tenLopHoc,
                     thoiGianBatDau: hd.thoiGianBatDau,
                     thoiGianKetThuc: hd.thoiGianKetThuc,
@@ -411,7 +412,6 @@ function XemLichHoc() {
                              <Button variant="primary" size="sm" onClick={goToCurrentWeek} className="me-2">
                                 Hôm nay
                             </Button>
-                            {/* Date Picker Search */}
                             <span>Đến ngày: </span>
                             <Form.Control 
                                 type="date" 
@@ -427,14 +427,11 @@ function XemLichHoc() {
                     </Button>
                 </div>
                 
-                {/* Body wrapper relative để đặt nút prev/next mobile */}
                 <div style={{ position: 'relative' }}>
-                    {/* Nút lùi (Chỉ hiện trên mobile qua CSS) */}
                     <Button className="slider-control-btn prev" onClick={() => handleScroll(-300)}>
                         <i className="fas fa-chevron-left"></i>
                     </Button>
                     
-                    {/* Container chứa Grid (Desktop) hoặc Flex (Mobile) */}
                     <div className="timetable-body-wrapper" ref={timetableScrollRef}>
                         {weekDays.map((day, index) => {
                             const dayString = day.toDateString();
@@ -451,18 +448,37 @@ function XemLichHoc() {
                                         </Card.Header>
                                         <Card.Body className="daily-card-body">
                                             {events.length > 0 ? (
-                                                events.map(event => (
-                                                    <div key={event.idLichHoc} className="schedule-event">
-                                                        <span className="event-time">
-                                                            <i className="far fa-clock me-1"></i>
-                                                            {event.thoiGianBatDau.substring(0, 5)} - {event.thoiGianKetThuc.substring(0, 5)}
-                                                        </span>
-                                                        <div className="event-title">{event.tenLopHoc}</div>
-                                                        <div className="event-details">
-                                                            <small><i className="fas fa-map-marker-alt me-1"></i>{event.tenPhong}</small>
+                                                events.map(event => {
+                                                    // Kiểm tra trạng thái: false là nghỉ
+                                                    const isCancelled = event.trangThai === false;
+
+                                                    return (
+                                                        <div 
+                                                            key={event.idLichHoc} 
+                                                            className={`schedule-event ${isCancelled ? 'cancelled' : ''}`}
+                                                        >
+                                                            <div className="d-flex justify-content-between align-items-start">
+                                                                <span className="event-time">
+                                                                    <i className={`far ${isCancelled ? 'fa-times-circle' : 'fa-clock'} me-1`}></i>
+                                                                    {event.thoiGianBatDau.substring(0, 5)} - {event.thoiGianKetThuc.substring(0, 5)}
+                                                                </span>
+                                                                {isCancelled && (
+                                                                    <span className="badge-cancelled">Nghỉ</span>
+                                                                )}
+                                                            </div>
+                                                            
+                                                            <div className="event-title">
+                                                                {event.tenLopHoc}
+                                                            </div>
+                                                            <div className="event-details">
+                                                                <small>
+                                                                    <i className="fas fa-map-marker-alt me-1"></i>
+                                                                    {event.tenPhong}
+                                                                </small>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                ))
+                                                    );
+                                                })
                                             ) : (
                                                 <div className="no-events-placeholder">
                                                     -
@@ -475,7 +491,6 @@ function XemLichHoc() {
                         })}
                     </div>
                     
-                    {/* Nút tiến (Chỉ hiện trên mobile qua CSS) */}
                     <Button className="slider-control-btn next" onClick={() => handleScroll(300)}>
                         <i className="fas fa-chevron-right"></i>
                     </Button>
