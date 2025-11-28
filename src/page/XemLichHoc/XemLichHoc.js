@@ -552,8 +552,10 @@ function XemLichHoc() {
                                                 <thead className="bg-light">
                                                     <tr>
                                                         <th className="text-center" style={{width: '50px'}}>#</th>
-                                                        <th>Tên Lớp Học</th>
-                                                        <th>Giờ Học</th>
+                                                        <th>Tên lớp học</th>
+                                                        <th>Giờ học</th>
+                                                        <th>Ngày khai giảng</th>
+                                                        <th>Ngày kết thúc</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -562,6 +564,8 @@ function XemLichHoc() {
                                                             <td className="text-center">{index + 1}</td>
                                                             <td className="fw-500">{hoaDon.tenLopHoc}</td>
                                                             <td>{`${hoaDon.thoiGianBatDau.substring(0, 5)} - ${hoaDon.thoiGianKetThuc.substring(0, 5)}`}</td>
+                                                            <td>{hoaDon.ngayKhaiGiang}</td>
+                                                            <td>{hoaDon.ngayKetThuc}</td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

@@ -262,8 +262,8 @@ function CustomNavbar({ navigate, courses = [] }) {
                                 }
                             </NavDropdown>
 
-                            <Nav.Link href="#" className="nav-item-custom">
-                                LIÊN HỆ
+                            <Nav.Link href="/tu-van" className="nav-item-custom">
+                                TƯ VẤN
                             </Nav.Link>
                             <Form className="d-flex mx-lg-3 my-2 my-lg-0" onSubmit={handleSearch}>
                                 <InputGroup size="sm">
@@ -307,7 +307,7 @@ function CustomNavbar({ navigate, courses = [] }) {
                                             )}
                                             <div>
                                                 <div className="fw-bold">{user.tenPh}</div>
-                                                <small className="text-muted">Thành viên KSL</small>
+                                                <small className="text-muted">Thành viên PPA</small>
                                             </div>
                                         </div>
 

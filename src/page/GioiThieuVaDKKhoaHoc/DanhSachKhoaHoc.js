@@ -110,7 +110,8 @@ function DanhSachKhoaHoc() {
                                         <Card className="course-item-card">
                                             {console.log('Image URL:', APIRoute.getUrlImage(course.hinhAnh))}
                                             {console.log('course.hinhAnh:', course.hinhAnh)}
-                                            <Card.Img variant="top" src={APIRoute.getUrlImage(course.hinhAnh)} />
+                                            {course.hinhAnh !=null? (<Card.Img variant="top" src={APIRoute.getUrlImage(course.hinhAnh)} />):(<Card.Img variant="top" src={'/5-935.jpg'} />)}
+                                            
                                             <Card.Body>
                                                 <Card.Title>{course.tenKH}</Card.Title>
                                                 <Card.Text>

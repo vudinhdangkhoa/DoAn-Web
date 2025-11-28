@@ -60,6 +60,7 @@ function PaymentResult() {
                     <i className="fas fa-check-circle result-icon"></i>
                     <h2>Thanh Toán Thành Công!</h2>
                     <p>Cảm ơn bạn đã đăng ký khóa học. Thông tin chi tiết đã được ghi nhận.</p>
+                    <p>Hãy vào phần tài khoản mục Lịch học để xem cho tiết thời gian học hoặc tại đây</p> <a href="/xem-lich-hoc">Xem Lịch Học</a>
                     {invoiceDetails && (
                         <Card className="mt-4 text-start">
                             <Card.Header as="h5">Chi Tiết Hóa Đơn</Card.Header>

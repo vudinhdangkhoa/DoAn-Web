@@ -79,12 +79,152 @@ function ThongTinCaNhan() {
 
     useEffect(() => {
         fetchPhuHuynhInformation();
+        window.scrollTo(0, 0);
     }, [navigate]);
 
-    // Xử lý thay đổi input của form
+    // Validation functions
+    const validateTenPh = (value) => {
+        if (!value || value.trim().length === 0) {
+            return "Họ và tên không được để trống";
+        }
+        if (value.trim().length < 2) {
+            return "Họ và tên phải có ít nhất 2 ký tự";
+        }
+        if (value.trim().length > 50) {
+            return "Họ và tên không được vượt quá 50 ký tự";
+        }
+        if (!/^[a-zA-ZÀ-ỹ\s]+$/.test(value.trim())) {
+            return "Họ và tên chỉ được chứa chữ cái và khoảng trắng";
+        }
+        // Kiểm tra không được có nhiều hơn 2 khoảng trắng liên tiếp
+        if (/\s{3,}/.test(value)) {
+            return "Không được có quá 2 khoảng trắng liên tiếp";
+        }
+        return null;
+    };
+
+    const validateSdt = (value) => {
+        if (!value || value.trim().length === 0) {
+            return "Số điện thoại không được để trống";
+        }
+        const cleanPhone = value.replace(/\s+/g, ''); // Loại bỏ khoảng trắng
+        if (!/^0[3-9][0-9]{8}$/.test(cleanPhone)) {
+            return "Số điện thoại phải có định dạng: 0xxxxxxxxx (10 chữ số, bắt đầu 03-09)";
+        }
+        return null;
+    };
+
+    const validateNgaySinh = (value) => {
+        if (!value) {
+            return "Ngày sinh không được để trống";
+        }
+        const today = new Date();
+        const birthDate = new Date(value);
+        
+        if (isNaN(birthDate.getTime())) {
+            return "Ngày sinh không hợp lệ";
+        }
+        
+        if (birthDate >= today) {
+            return "Ngày sinh phải nhỏ hơn ngày hiện tại";
+        }
+        
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        const dayDiff = today.getDate() - birthDate.getDate();
+        
+        let actualAge = age;
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            actualAge--;
+        }
+        
+        if (actualAge < 18) {
+            return "Phụ huynh phải từ 18 tuổi trở lên";
+        }
+        if (actualAge > 80) {
+            return "Vui lòng kiểm tra lại ngày sinh";
+        }
+        return null;
+    };
+
+    const validateStudentNgaySinh = (value) => {
+        if (!value) {
+            return "Ngày sinh không được để trống";
+        }
+        const today = new Date();
+        const birthDate = new Date(value);
+        
+        if (isNaN(birthDate.getTime())) {
+            return "Ngày sinh không hợp lệ";
+        }
+        
+        if (birthDate >= today) {
+            return "Ngày sinh phải nhỏ hơn ngày hiện tại";
+        }
+        
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        const dayDiff = today.getDate() - birthDate.getDate();
+        
+        let actualAge = age;
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            actualAge--;
+        }
+        
+        if (actualAge < 3) {
+            return "Học viên phải từ 3 tuổi trở lên";
+        }
+        if (actualAge > 25) {
+            return "Học viên không được quá 25 tuổi";
+        }
+        return null;
+    };
+
+    const validateStudentTen = (value) => {
+        if (!value || value.trim().length === 0) {
+            return "Tên học viên không được để trống";
+        }
+        if (value.trim().length < 2) {
+            return "Tên học viên phải có ít nhất 2 ký tự";
+        }
+        if (value.trim().length > 50) {
+            return "Tên học viên không được vượt quá 50 ký tự";
+        }
+        if (!/^[a-zA-ZÀ-ỹ\s]+$/.test(value.trim())) {
+            return "Tên học viên chỉ được chứa chữ cái và khoảng trắng";
+        }
+        // Kiểm tra không được có nhiều hơn 2 khoảng trắng liên tiếp
+        if (/\s{3,}/.test(value)) {
+            return "Không được có quá 2 khoảng trắng liên tiếp";
+        }
+        return null;
+    };
+
+    const validateAvatarFile = (file) => {
+        if (!file) return null;
+        
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+        if (!allowedTypes.includes(file.type)) {
+            return "Chỉ chấp nhận file ảnh định dạng JPG, PNG hoặc GIF";
+        }
+        
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        if (file.size > maxSize) {
+            return "Kích thước file không được vượt quá 5MB";
+        }
+        
+        return null;
+    };
+
+    // Xử lý thay đổi input của form với validation
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        
+        // Clear error khi user bắt đầu sửa
+        if (updateError) {
+            setUpdateError(null);
+        }
     };
     
     // === CÁC HÀM XỬ LÝ AVATAR ===
@@ -97,8 +237,15 @@ function ThongTinCaNhan() {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            const error = validateAvatarFile(file);
+            if (error) {
+                setUpdateError(error);
+                e.target.value = null; // Clear input
+                return;
+            }
             setAvatarFile(file); // Lưu file vào state
             setAvatarPreview(URL.createObjectURL(file)); // Tạo URL xem trước
+            setUpdateError(null); // Clear any previous errors
         }
     };
 
@@ -116,8 +263,19 @@ function ThongTinCaNhan() {
         setUpdateError(null);
         setUpdateSuccess('');
 
-        if(!formData.GioiTinh){
+        // Validate all fields
+        const tenError = validateTenPh(formData.tenPh);
+        const sdtError = validateSdt(formData.sdt);
+        const ngaySinhError = validateNgaySinh(formData.ngaySinh);
+        
+        if (!formData.GioiTinh) {
             setUpdateError("Vui lòng chọn giới tính.");
+            setIsLoadingUpdate(false);
+            return;
+        }
+
+        if (tenError || sdtError || ngaySinhError) {
+            setUpdateError(tenError || sdtError || ngaySinhError);
             setIsLoadingUpdate(false);
             return;
         }
@@ -171,10 +329,15 @@ function ThongTinCaNhan() {
         setShowAddStudentModal(true);
     };
 
-    // Cập nhật state khi người dùng nhập form
+    // Cập nhật state khi người dùng nhập form với validation
     const handleNewStudentInputChange = (e) => {
         const { name, value } = e.target;
         setNewStudentData(prev => ({ ...prev, [name]: value }));
+        
+        // Clear error khi user bắt đầu sửa
+        if (addStudentError) {
+            setAddStudentError(null);
+        }
     };
 
     // Xử lý khi chọn file avatar cho học viên mới
@@ -188,9 +351,22 @@ function ThongTinCaNhan() {
     
     // Thêm học viên từ form vào bảng tạm (stagedStudents)
     const handleStageStudent = () => {
-        // Validate dữ liệu cơ bản
-        if (!newStudentData.TenHv || !newStudentData.NgaySinh) {
-            setAddStudentError("Vui lòng nhập đầy đủ Tên và Ngày sinh của học viên.");
+        // Validate dữ liệu chi tiết
+        const tenError = validateStudentTen(newStudentData.TenHv);
+        const ngaySinhError = validateStudentNgaySinh(newStudentData.NgaySinh);
+        
+        if (tenError || ngaySinhError) {
+            setAddStudentError(tenError || ngaySinhError);
+            return;
+        }
+
+        // Check duplicate names in staged students
+        const isDuplicate = stagedStudents.some(student => 
+            student.TenHv.toLowerCase().trim() === newStudentData.TenHv.toLowerCase().trim()
+        );
+        
+        if (isDuplicate) {
+            setAddStudentError("Tên học viên đã tồn tại trong danh sách.");
             return;
         }
         
@@ -349,20 +525,54 @@ function ThongTinCaNhan() {
                                                 <Row className="mt-3">
                                                     <Col md={6}>
                                                         <Form.Group className="mb-3" controlId="formTenPh">
-                                                            <Form.Label>Họ và Tên</Form.Label>
-                                                            <Form.Control type="text" name="tenPh" value={formData.tenPh || ''} onChange={handleInputChange} readOnly={!isEditing} />
+                                                            <Form.Label>Họ và Tên <span className="text-danger">*</span></Form.Label>
+                                                            <Form.Control 
+                                                                type="text" 
+                                                                name="tenPh" 
+                                                                value={formData.tenPh || ''} 
+                                                                onChange={handleInputChange} 
+                                                                readOnly={!isEditing}
+                                                                isInvalid={isEditing && formData.tenPh && validateTenPh(formData.tenPh)}
+                                                                maxLength="50"
+                                                            />
+                                                            <Form.Control.Feedback type="invalid">
+                                                                {validateTenPh(formData.tenPh)}
+                                                            </Form.Control.Feedback>
                                                         </Form.Group>
                                                     </Col>
                                                     <Col md={6}>
                                                         <Form.Group className="mb-3" controlId="formNgaySinh">
-                                                            <Form.Label>Ngày Sinh</Form.Label>
-                                                            <Form.Control type="date" name="ngaySinh" value={formData.ngaySinh || ''} onChange={handleInputChange} readOnly={!isEditing} />
+                                                            <Form.Label>Ngày Sinh <span className="text-danger">*</span></Form.Label>
+                                                            <Form.Control 
+                                                                type="date" 
+                                                                name="ngaySinh" 
+                                                                value={formData.ngaySinh || ''} 
+                                                                onChange={handleInputChange} 
+                                                                readOnly={!isEditing}
+                                                                isInvalid={isEditing && formData.ngaySinh && validateNgaySinh(formData.ngaySinh)}
+                                                                max={new Date().toISOString().split('T')[0]}
+                                                            />
+                                                            <Form.Control.Feedback type="invalid">
+                                                                {validateNgaySinh(formData.ngaySinh)}
+                                                            </Form.Control.Feedback>
                                                         </Form.Group>
                                                     </Col>
                                                     <Col md={6}>
                                                         <Form.Group className="mb-3" controlId="formSdt">
-                                                            <Form.Label>Số Điện Thoại</Form.Label>
-                                                            <Form.Control type="text" name="sdt" value={formData.sdt || ''} onChange={handleInputChange} readOnly={!isEditing} />
+                                                            <Form.Label>Số Điện Thoại <span className="text-danger">*</span></Form.Label>
+                                                            <Form.Control 
+                                                                type="tel" 
+                                                                name="sdt" 
+                                                                value={formData.sdt || ''} 
+                                                                onChange={handleInputChange} 
+                                                                readOnly={!isEditing}
+                                                                isInvalid={isEditing && formData.sdt && validateSdt(formData.sdt)}
+                                                                placeholder="Ví dụ: 0123456789"
+                                                                maxLength="11"
+                                                            />
+                                                            <Form.Control.Feedback type="invalid">
+                                                                {validateSdt(formData.sdt)}
+                                                            </Form.Control.Feedback>
                                                         </Form.Group>
                                                     </Col>
                                                     <Col md={6}>
@@ -442,14 +652,35 @@ function ThongTinCaNhan() {
                                 <Row>
                                     <Col md={6}>
                                         <Form.Group className="mb-3" controlId="formStudentName">
-                                            <Form.Label>Họ và Tên</Form.Label>
-                                            <Form.Control type="text" name="TenHv" placeholder="Nhập tên học viên" value={newStudentData.TenHv} onChange={handleNewStudentInputChange} />
+                                            <Form.Label>Họ và Tên <span className="text-danger">*</span></Form.Label>
+                                            <Form.Control 
+                                                type="text" 
+                                                name="TenHv" 
+                                                placeholder="Nhập tên học viên" 
+                                                value={newStudentData.TenHv} 
+                                                onChange={handleNewStudentInputChange}
+                                                isInvalid={newStudentData.TenHv && validateStudentTen(newStudentData.TenHv)}
+                                                maxLength="50"
+                                            />
+                                            <Form.Control.Feedback type="invalid">
+                                                {validateStudentTen(newStudentData.TenHv)}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>
                                     <Col md={6}>
                                         <Form.Group className="mb-3" controlId="formStudentDob">
-                                            <Form.Label>Ngày Sinh</Form.Label>
-                                            <Form.Control type="date" name="NgaySinh" value={newStudentData.NgaySinh} onChange={handleNewStudentInputChange} />
+                                            <Form.Label>Ngày Sinh <span className="text-danger">*</span></Form.Label>
+                                            <Form.Control 
+                                                type="date" 
+                                                name="NgaySinh" 
+                                                value={newStudentData.NgaySinh} 
+                                                onChange={handleNewStudentInputChange}
+                                                isInvalid={newStudentData.NgaySinh && validateStudentNgaySinh(newStudentData.NgaySinh)}
+                                                max={new Date().toISOString().split('T')[0]}
+                                            />
+                                            <Form.Control.Feedback type="invalid">
+                                                {validateStudentNgaySinh(newStudentData.NgaySinh)}
+                                            </Form.Control.Feedback>
                                         </Form.Group>
                                     </Col>
                                     <Col md={6}>

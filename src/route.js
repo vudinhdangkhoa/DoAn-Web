@@ -12,6 +12,7 @@ import XemLichHoc from "./page/XemLichHoc/XemLichHoc";
 import LichSuThanhToan from "./page/LichSuThanhToan/LichSuThanhToan";
 import Feedback from "./page/Feedback/feedback";
 import TimKiemKhoaHoc from "./page/TimKiemKhoaHoc/TimKiemKhoaHoc";
+import TuVanPage from "./page/TuVan/TuVanPage";
 function AppRouter() {
   return (
     <Router>
@@ -29,6 +30,7 @@ function AppRouter() {
         <Route path="/lich-su-thanh-toan" element={<LichSuThanhToan />} />
         <Route path="/feedback/:idLopHoc/:idHocVien" element={<Feedback />} />
         <Route path="/tim-kiem-khoa-hoc" element={<TimKiemKhoaHoc />} />
+        <Route path="/tu-van" element={<TuVanPage />} />
       </Routes>
     </Router>
   );
